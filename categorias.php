@@ -37,7 +37,7 @@
 <!--Decoração Home Page -->
 <div class="row">
 	<div class="col-md-12">
-		<img src="imagens/deco_?= $cat_id; ?>.jpg" width="1200px" class="img-responsive" />
+		<img src="../img/deco_?= $cat_id; ?>.jpg" width="1200px" class="img-responsive" />
 	</div>
 </div> 
 

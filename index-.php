@@ -32,8 +32,8 @@
 
 <!--Decoração Home Page -->
 <div class="row">
-	<div class="col-md-12">
-		<img src="img/teste.png" width="1200px" class="img-responsive" />
+	<div class="col-md-13">
+		<img src="img/teste.png" width="1200x" class="img-responsive" />
 	</div>
 </div> 
 
