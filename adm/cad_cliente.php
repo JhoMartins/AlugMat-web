@@ -265,11 +265,41 @@
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
 		
+		<script>
+		function tipopessoa(e) { 
+					if(e.value == "F") {
+						document.getElementById("cpf").disabled = false;
+						document.getElementById("rg").disabled = false;
+						document.getElementById("cnpj").disabled = true;
+						document.getElementById("ie").disabled = true;
+						document.getElementById("cnpj").value = "";
+						document.getElementById("ie").value = "";
+					} if(e.value == "J") {
+						document.getElementById("cnpj").disabled = false;
+						document.getElementById("ie").disabled = false;
+						document.getElementById("cpf").disabled = true;
+						document.getElementById("rg").disabled = true;
+						document.getElementById("cpf").value = "";
+						document.getElementById("rg").value = "";
+					}
+					if (e.value == "") {
+						document.getElementById("cnpj").disabled = true;
+						document.getElementById("ie").disabled = true;
+						document.getElementById("cpf").disabled = true;
+						document.getElementById("rg").disabled = true;
+						document.getElementById("cnpj").value = "";
+						document.getElementById("ie").value = "";
+						document.getElementById("cpf").value = "";
+						document.getElementById("rg").value = "";
+					}
+				 };
+		</script>
+		
 		<form action="cad_cliente.php" method="post">
 		  <div id="actions" class="row"> 
 		<div class="form-group col-md-2" >
 			<label for="">Tipo de Pessoa</label>
-			<select name="tipo_pessoa" class="form-control">
+			<select id="tipo_pessoa" name="tipo_pessoa" class="form-control" onchange="tipopessoa(tipo_pessoa)">
 				<option value="">Selecione</option>
 				<option value="F" <?php if (isset($_POST['tipo_pessoa']) && $_POST['tipo_pessoa'] == "F") echo "selected"; ?>>Pessoa Física</option>
 				<option value="J" <?php if (isset($_POST['tipo_pessoa']) && $_POST['tipo_pessoa'] == "J") echo "selected"; ?>>Pessoa Juridica</option>
@@ -283,22 +313,22 @@
 
 			<div class="form-group col-md-2">
 				<label for="cpf"> * CPF</label>
-				<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php if (isset($_POST['cpf'])) echo $_POST['cpf']; ?>" disabled <?php //if (tipo_pessoa != "F") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php if (isset($_POST['cpf'])) echo $_POST['cpf']; ?>" disabled>
 			</div>
 			
 			<div class="form-group col-md-2">
 				<label for="rg"> * RG</label>
-				<input type="text" class="form-control" id="rg" name="rg" placeholder="" maxlength="12" value="<?php if (isset($_POST['rg'])) echo $_POST['rg']; ?>" disabled <?php //if (tipo_pessoa != "F") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="rg" name="rg" placeholder="" maxlength="12" value="<?php if (isset($_POST['rg'])) echo $_POST['rg']; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="cnpj"> * CNPJ</label>
-				<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex.: 00.000.000/0000-00" maxlength="18" value="<?php if (isset($_POST['cnpj'])) echo $_POST['cnpj']; ?>" disabled <?php //if (tipo_pessoa != "J") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex.: 00.000.000/0000-00" maxlength="18" value="<?php if (isset($_POST['cnpj'])) echo $_POST['cnpj']; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="ie"> * IE </label>
-				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php if (isset($_POST['ie'])) echo $_POST['ie']; ?>" disabled <?php //if (tipo_pessoa != "J") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php if (isset($_POST['ie'])) echo $_POST['ie']; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2">
