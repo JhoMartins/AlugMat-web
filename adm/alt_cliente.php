@@ -9,7 +9,6 @@
 	}
 	else {
 		//header("Location: usuario_menu.php");
-		//echo("ERRO: ID NÃO ENCONTRADO");
 		exit();
 	}
 	
