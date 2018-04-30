@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Projeto</title>
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+</body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">toggle</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Site do Projeto</a>
+			</div>
+			<div id="navbar" class="navbar-collapsed collapsed">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../menu_principal.html">Inicio</a></li>
+				<li><a href="#">Contato</a></li>
+				<li><a href="#">Outros</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="main" class="container-fluid">
+		<h3 class="page-header">Cadastro de Produto</h3>
+		<form method="post" action="">
+
+			<div class="form group col-md-6">
+				<label>* Descrição</label>
+				<input type="text" name="descricao" maxlength="50" class="form-control" value="">
+			</div>
+
+			<div class="form group col-md-4">
+				<label>* Código Interno</label>
+				<input type="text" name="cd_interno" maxlength="10" class="form-control" value="">
+			</div>
+
+			<div class="form group col-md-2">
+				<label>* Valor da diária</label>
+				<input type="text" name="valor_diaria" maxlength="8" class="form-control" value="">
+			</div>
+
+			<div class="form group col-md-2">
+				<label for="">* Status</label>
+				<select class="form-control" id="">
+					<option>Status</option>
+					<option>S</option>
+					<option>N</option>
+				</select>
+			</div>
+
+		
+
+			<div class="form-group col-md-2" >
+			<label for="sel1">Marca:</label>
+			<select class="form-control" id="sel1">
+				<option>Selecione</option>
+				<option>Bosh</option>
+				<option>3M</option>
+				<option>Bracol</option>
+			</select>
+			</div>
+
+			<div class="form-group col-md-2" >
+				<label for="sel1">Categoria:</label>
+				<select class="form-control" id="sel1">
+					<option>Selecione</option>
+					<option>Categoria 1</option>
+					<option>Categoria 2</option>
+					<option>Categoria 3</option>
+				</select>
+			</div>
+
+			<div class="form-group col-md-2" >
+				<label for="sel1">Fornecedor:</label>
+				<select class="form-control" id="sel1">
+					<option>Selecione</option>
+					<option>Fornecedor 1</option>
+					<option>Fornecedor 2</option>
+					<option>Fornecedor 3</option>
+				</select>
+			</div>
+
+				 <div class="form-group col-md-6">
+    			<label for="exampleFormControlTextarea1">Caracteristicas</label>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+  			 </div>
+			<form action="index.html">
+		  <div id="actions"> 
+			<div class="col-md-12">
+			<button type="submit" class="btn btn-primary">Salvar</button>
+			<a href="index.html" class="btn btn-default">Cancelar</a>
+			</div>
+			</div>
+		</form>
+		
+	</div>
+
+				
+</html>
