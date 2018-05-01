@@ -23,14 +23,18 @@
 			$sucesso = "<h1><strong>Sucesso!</strong></h1>
 						<p>Seu registro foi incluido com sucesso!</p>
 						<p>Aguarde... Redirecionando!</p>";
+						
+			echo "<div class='alert alert-success'>$sucesso</div>";
 			
-			//echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=usuario_menu.php'>";
+			echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
 		}
 		else {
 			$erro = "<h1><strong>Erro no Sistema</strong></h1>
 					 <p>Você não pode ser registrado devido a um erro do sistema. Pedimos desculpas por qualquer inconveniente.</p>";
 			
 			$erro .= '<p>' . mysqli_error($dbc) . '<br /> Query: ' . $q . '</p>';
+			
+			echo "<div class='alert alert-danger'>$erro</div>";
 		}
 	}
 	

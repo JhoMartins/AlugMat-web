@@ -2,7 +2,7 @@
   if (isset($_POST['enviado'])){
       require_once('../includes/conexao.php');
       require_once('../includes/funcoes.php');
-      echo "oi";
+
       list($check, $data) = check_login($dbc, $_POST['iptLogin'], $_POST['iptSenha']);
 
       if ($check) {
@@ -18,8 +18,9 @@
           $erros = $data;
       }
 
-      if (!empty($errors)){
+      if (!empty($erros)){
           $saida = '<h2>Erro!</h2>';
+		  
           foreach ($erros as $msg) {
               $saida .= " - $msg <br /> \n";
           }
@@ -74,6 +75,12 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
         <input type="hidden" value="True" name="enviado" />
+		
+		<?php
+			if (isset($saida)) {
+				echo "<br /><div class='alert alert-danger'>$saida</div>";
+			}
+		?>
       </form>
 
     </div> <!-- /container -->
