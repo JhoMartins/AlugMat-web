@@ -28,7 +28,7 @@
 			$erros[] = 'Por favor, informe o CPF.';
 		}
 		else {
-			$cpf = mysqli_real_escape_string($dbc,trim($_POST['cpf']));
+			$cpf = (!empty($_POST['cpf'])) ? mysqli_real_escape_string($dbc,trim($_POST['cpf'])) : NULL;
 		}
 		
 		//RG
@@ -36,7 +36,7 @@
 			$erros[] = 'Por favor, informe o RG.';
 		}
 		else {
-			$rg = mysqli_real_escape_string($dbc,trim($_POST['rg']));
+			$rg = (!empty($_POST['rg'])) ? mysqli_real_escape_string($dbc,trim($_POST['rg'])) : NULL;
 		}
 		
 		//CNPJ
@@ -44,7 +44,7 @@
 			$erros[] = 'Por favor, informe o CNPJ.';
 		}
 		else {
-			$cnpj = mysqli_real_escape_string($dbc,trim($_POST['cnpj']));
+			$cnpj = (!empty($_POST['cnpj'])) ? mysqli_real_escape_string($dbc,trim($_POST['cnpj'])) : NULL;
 		}
 		
 		//IE
@@ -52,7 +52,7 @@
 			$erros[] = 'Por favor, informe a IE.';
 		}
 		else {
-			$ie = mysqli_real_escape_string($dbc,trim($_POST['ie']));
+			$ie = (!empty($_POST['ie'])) ? mysqli_real_escape_string($dbc,trim($_POST['ie'])) : NULL;
 		}
 		
 		//TIPO DE LOGRADOURO
@@ -204,7 +204,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				//echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=usuario_menu.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>

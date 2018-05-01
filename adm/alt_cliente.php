@@ -194,7 +194,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				//echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=usuario_menu.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>

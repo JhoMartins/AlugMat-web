@@ -7,7 +7,7 @@
 	$ordenar = isset($_GET['ordenar']);
 		if ($ordenar == "")
 		{
-			$ordenar = "preco DESC";
+			$ordenar = "valor_diaria desc";
 		}
 		else
 		{
@@ -15,8 +15,8 @@
 		}
 
 	//Selecionar as ofertas em destaque
-	$q = "SELECT * FROM Miniaturas
-		  WHERE destaque = 'S' 
+	$q = "select * from produto
+		  where destaque = 'S' 
 		  ORDER BY " . $ordenar;
 
 	$r = @mysqli_query($dbc,$q);

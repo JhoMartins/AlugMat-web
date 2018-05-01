@@ -22,12 +22,13 @@
 	  else {
 	    $s = mysqli_real_escape_string($dbc, trim($senha));
 	  }
+	  
 
 	  if (empty($erros)){
-		$q = "SELECT id, nome, FROM cliente WHERE email = '$n' AND senha = SHA1('bd_alugmat.$s')";
+		$q = "SELECT id, nome FROM cliente WHERE email = '$n' AND senha = '" . SHA1('bd_alugmat'.$s) . "'";
 		$r = mysqli_query($dbc, $q);
 
-		if (mysqli_num_rows($r) == 0){
+		if (mysqli_num_rows($r) == 1){
 			$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 			return array(true, $row);
 		}
