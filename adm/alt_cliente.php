@@ -246,7 +246,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Alugmat - Cadastro de Usuário</a>
+				<a class="navbar-brand" href="#">Alteração de Usuário</a>
 			</div>
 			<div id="navbar" class="navbar-collapsed collapsed">
 			<ul class="nav navbar-nav navbar-right">
