@@ -245,9 +245,12 @@
 			</div>
 			</div>
 		</form>
+	
 		
 	</div>
-
+		<?php
+		include_once('../includes/rodape.php');
+		?>
 				
 </html>
 

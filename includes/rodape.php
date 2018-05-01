@@ -1,11 +1,17 @@
-﻿	</div>
+﻿</div>
 	
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">
-		Copyright© 2018, Loja de Aluguel de Peças - Projeto </p>	
-      </div>
-    </footer>
+  
+<!--Footer-->
+<footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+      
+    <hr>
+<div class="footer-copyright py-3 text-center">
+        © 2018 Alugamat:
+         Projeto Desenvolvimento de Sistemas II 
+    </div>
+</footer>
+
+                      
 
 	
 	<!-- Bootstrap core JavaScript
