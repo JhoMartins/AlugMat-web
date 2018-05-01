@@ -431,5 +431,9 @@
 			<input type="hidden" name="enviou" value="True" />
 			</div>
 		</div>
+	
 		</form>
+			<?php
+		include_once('../includes/rodape.php');
+		?>
 </html>

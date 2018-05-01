@@ -205,6 +205,9 @@
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>" />
 			</div>
 		  </div>
+		 <?php
+		include_once('../includes/rodape.php');
+		?>
 		  
 		</form>
 		
