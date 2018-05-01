@@ -1,3 +1,32 @@
+<?php
+  if (isset($_POST['enviado'])){
+      require_once('../includes/conexao.php');
+      require_once('../includes/funcoes.php');
+      echo "oi";
+      list($check, $data) = check_login($dbc, $_POST['iptLogin'], $_POST['iptSenha']);
+
+      if ($check) {
+          session_start();
+          $_SESSION['id'] = $data['id'];
+          $_SESSION['nome'] = $data['nome'];
+
+          $url = absolute_url('menu_principal.php');
+          header("Location: $url");
+          exit();
+      }
+      else {
+          $erros = $data;
+      }
+
+      if (!empty($errors)){
+          $saida = '<h2>Erro!</h2>';
+          foreach ($erros as $msg) {
+              $saida .= " - $msg <br /> \n";
+          }
+          $saida .= '<p>Por favor, tente novamente.</p>';
+      }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,14 +64,14 @@
 
     <div class="container">
 
-      <form class="form-signin" action="index.php">
+      <form class="form-signin" action="index.php" method="post">
         <h2 class="form-signin-heading">Login</h2>
 
         <label for="iptLogin" class="sr-only">Login</label>
         <input type="email" name="iptLogin" id="iptLogin" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="iptSenha" id="inputPassword" class="form-control" placeholder="Senha" required>
-        
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
         <input type="hidden" value="True" name="enviado" />
       </form>
