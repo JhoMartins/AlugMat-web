@@ -67,7 +67,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Alugmat - Cadastro de Produto</a>
+				<a class="navbar-brand" href="#">Exclusão de Produto</a>
 			</div>
 			<div id="navbar" class="navbar-collapsed collapsed">
 			<ul class="nav navbar-nav navbar-right">
