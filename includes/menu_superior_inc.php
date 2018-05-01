@@ -1,9 +1,8 @@
 <ul class="nav navbar-nav">
-	<li><a href="pedidos.php"> Meus Pedidos </a></li>
+	<li><a href="pedidos.php"> Minhas Reservas </a></li>
 	<li><a href="login.php?cadastro=s"> Meu Cadastro </a></li>
 	<li><a href="cesta.php"> Meu Carrinho 
-	(
-		<?php if (!isset($_SESSION['total_itens'])) 
+	(<?php if (!isset($_SESSION['total_itens'])) 
 		{
 			echo "vazio";
 		}
@@ -24,7 +23,6 @@
 			}
 		}
 
-		?>
-	)
+	?>)
 	</a></li>
 </ul>
