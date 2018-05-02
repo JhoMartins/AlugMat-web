@@ -1,3 +1,16 @@
+
+<?php
+	if (!isset($_SESSION['id'])) {
+?>
+<ul class="nav navbar-nav">
+	<li><a href="adm/cad_cliente.php">Cadastre-se</a></li>
+	<li><a href="adm/index.php?">Login</a></li>
+	
+	</a></li>
+</ul>
+<?php
+	} else {
+?>
 <ul class="nav navbar-nav">
 	<li><a href="pedidos.php"> Minhas Reservas </a></li>
 	<li><a href="login.php?cadastro=s"> Meu Cadastro </a></li>
@@ -23,6 +36,7 @@
 			}
 		}
 
-	?>)
-	</a></li>
+	?>)</a></li>
+	<li><a href="adm/logout.php">Sair</a></li>
 </ul>
+	<?php } ?>

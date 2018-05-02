@@ -70,6 +70,8 @@
 			$caracteristicas = NULL;
 		}
 		
+		//DESTAQUE
+		
 		
 		
 		//Se não há nenhum erro, inserir registro no banco de dados
@@ -165,7 +167,7 @@
 			</div>
 		
 
-			<div class="form-group col-md-3" >
+			<div class="form-group col-md-2" >
 				<br/>
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca">
@@ -176,7 +178,7 @@
 			</select>
 			</div>
 
-			<div class="form-group col-md-3" >
+			<div class="form-group col-md-2" >
 				<br/>
 				<label for="sel1">* Categoria:</label>
 				<select class="form-control" id="sel1" name="categoria">
@@ -195,6 +197,16 @@
 					<option value="fornecedor 1" <?php if (isset($_POST['fornecedor']) && $_POST['fornecedor'] == "fornecedor 1") echo "selected"; ?>>Fornecedor 1</option>
 					<option value="fornecedor 2" <?php if (isset($_POST['fornecedor']) && $_POST['fornecedor'] == "fornecedor 2") echo "selected"; ?>>Fornecedor 2</option>
 					<option value="fornecedor 3" <?php if (isset($_POST['fornecedor']) && $_POST['fornecedor'] == "fornecedor 3") echo "selected"; ?>>Fornecedor 3</option>
+				</select>
+			</div>
+			
+			<div class="form-group col-md-2" >
+				<br/>
+				<label for="sel1">Destaque:</label>
+				<select class="form-control" id="sel1" name="destaque">
+					<option value="">Selecione</option>
+					<option value="S" <?php if (isset($_POST['destaque']) && $_POST['destaque'] == "S") echo "selected"; ?>>Sim</option>
+					<option value="N" <?php if (isset($_POST['destaque']) && $_POST['destaque'] == "N") echo "selected"; ?>>Não</option>
 				</select>
 			</div>
 

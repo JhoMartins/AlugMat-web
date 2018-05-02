@@ -84,7 +84,7 @@
 		
 		//COMPLEMENTO
 		if (!empty($_POST['complemento'])) {
-			$complemento = mysqli_real_escape_string($dbc,trim($_POST['complemento']));
+			$complemento = (isset($_POST['complemento'])) ? mysqli_real_escape_string($dbc,trim($_POST['complemento'])) : NULL;
 		}
 		
 		//BAIRRO
@@ -194,7 +194,7 @@
 										'$telefone',
 										'$celular',
 										'$email',
-										SHA1('bd_alugmat.$senha'),
+										SHA1('bd_alugmat'.$senha),
 										NOW(),
 										'USU')";
 			$res = @mysqli_query($dbc,$qry);
@@ -204,7 +204,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>
@@ -272,7 +272,7 @@
 		
 		<div class="form-group col-md-2" >
 			
-			<label for="">Tipo de Pessoa</label>
+			<label for="">* Tipo de Pessoa</label>
 			<select id="tipo_pessoa" name="tipo_pessoa" class="form-control" onchange="tipopessoa(tipo_pessoa)">
 				<option value="">Selecione</option>
 				<option value="F" <?php if (isset($_POST['tipo_pessoa']) && $_POST['tipo_pessoa'] == "F") echo "selected"; ?>>Pessoa Física</option>

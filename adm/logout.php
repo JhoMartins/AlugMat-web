@@ -14,8 +14,13 @@
   $titulo = 'Desconectado!';
   require_once('../includes/cabecalho.php');
 
-  echo "<h1>Desconectado!>/h1>
-  <p>Você agora está desconectado, {$_COOKIE['nome']}!</p>"
+  echo "<div class='alert alert-success'>
+		<h1><strong>Sucesso!</strong></h1>							
+ 	    <p>Você agora está desconectado, {$_COOKIE['nome']}!</p>
+ 	    <p>Aguarde... Redirecionando!</p>
+		</div>";
 
-  require_once('../includes/rodape.php')
+  require_once('../includes/rodape.php');
+  
+  echo "<meta HTTP-EQUIV='refresh' CONTENT='0; URL=../index.php'>";
 ?>

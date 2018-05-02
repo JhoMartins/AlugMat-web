@@ -26,7 +26,7 @@
 						
 			echo "<div class='alert alert-success'>$sucesso</div>";
 			
-			echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+			echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 		}
 		else {
 			$erro = "<h1><strong>Erro no Sistema</strong></h1>
