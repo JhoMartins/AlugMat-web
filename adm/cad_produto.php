@@ -1,5 +1,5 @@
 <?php
-	//include_once('../includes/cabecalho.php');
+	include_once('../includes/cabecalho.php');
 	
 	if (isset($_POST['enviou'])) {
 		require_once('../includes/conexao.php');
@@ -132,46 +132,13 @@
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>";
 ?>
 
-<html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Alugmat</title>
-
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">toggle</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Cadastro de Produto</a>
-			</div>
-			<div id="navbar" class="navbar-collapsed collapsed">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../menu_principal.html">Inicio</a></li>
-				<li><a href="#">Contato</a></li>
-				<li><a href="#">Outros</a></li>
-			</ul>
-			</div>
-		</div>
-	</nav>
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Produto</h3>
-		<form method="post" action="">
-		  <div id="actions"> 
-			<div class="form group col-md-6">
+		<form method="post" action="cad_produto.php">
+		  <div id="actions" class="row"> 
+			
+			<div class="form group col-md-5">
 				<label>* Descrição</label>
 				<input type="text" name="descricao" maxlength="50" class="form-control" value="<?php if (isset($_POST['descricao'])) echo $_POST['descricao']; ?>">
 			</div>
@@ -181,23 +148,25 @@
 				<input type="text" name="cd_interno" maxlength="10" class="form-control" value="<?php if (isset($_POST['cd_interno'])) echo $_POST['cd_interno']; ?>">
 			</div>
 
-			<div class="form group col-md-2">
+			<div class="form group col-md-3">
 				<label>* Valor da diária</label>
 				<input type="text" name="valor_diaria" maxlength="8" class="form-control" value="<?php if (isset($_POST['valor_diaria'])) echo $_POST['valor_diaria']; ?>">
 			</div>
 
-			<div class="form group col-md-2">
-				<label for="">* Status</label>
+
+			<div class="form group col-md-3">
+				<br/>
+				<label for="status">* Status</label>
 				<select class="form-control" name="status">
 					<option value="">Selecione</option>
 					<option value="S" <?php if (isset($_POST['status']) && $_POST['status'] == "S") echo "selected"; ?>>Ativo</option>
 					<option value="N" <?php if (isset($_POST['status']) && $_POST['status'] == "N") echo "selected"; ?>>Inativo</option>
 				</select>
 			</div>
-
 		
 
 			<div class="form-group col-md-3" >
+				<br/>
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca">
 				<option value="">Selecione</option>
@@ -208,6 +177,7 @@
 			</div>
 
 			<div class="form-group col-md-3" >
+				<br/>
 				<label for="sel1">* Categoria:</label>
 				<select class="form-control" id="sel1" name="categoria">
 					<option value="">Selecione</option>
@@ -217,7 +187,8 @@
 				</select>
 			</div>
 
-			<div class="form-group col-md-4" >
+			<div class="form-group col-md-3" >
+				<br/>
 				<label for="sel1">* Fornecedor:</label>
 				<select class="form-control" id="sel1" name="fornecedor">
 					<option value="">Selecione</option>
@@ -228,9 +199,12 @@
 			</div>
 
 				 <div class="form-group col-md-12">
-    			<label for="exampleFormControlTextarea1">Caracteristicas</label>
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas"><?php if (isset($_POST['caracteristicas'])) echo $_POST['caracteristicas']; ?></textarea>
-  			 </div>
+    				<label for="exampleFormControlTextarea1">Caracteristicas</label>
+    				<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas"><?php if (isset($_POST['caracteristicas'])) echo $_POST['caracteristicas'];?></textarea>
+    				<hr />
+  			 	</div>
+
+  
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>
@@ -238,12 +212,12 @@
 			<input type="hidden" name="enviou" value="True" />
 			</div>
 			</div>
+
 		</form>
 				<?php
 		include_once('../includes/rodape.php');
 		?>
-		
-	</div>
+	
 
 				
 </html>

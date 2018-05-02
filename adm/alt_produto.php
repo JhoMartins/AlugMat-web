@@ -1,5 +1,5 @@
 <?php
-	//include_once('../includes/cabecalho.php');
+	include_once('../includes/cabecalho.php');
 	
 	if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) {
 		$id = $_GET['id'];
@@ -137,41 +137,7 @@
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>";
 ?>
 
-<html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Alugmat</title>
-
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">toggle</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Alteração de Produto</a>
-			</div>
-			<div id="navbar" class="navbar-collapsed collapsed">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../menu_principal.html">Inicio</a></li>
-				<li><a href="#">Contato</a></li>
-				<li><a href="#">Outros</a></li>
-			</ul>
-			</div>
-		</div>
-	</nav>
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Produto</h3>
 		<form method="post" action="">
