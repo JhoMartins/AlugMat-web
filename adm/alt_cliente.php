@@ -95,7 +95,7 @@
 		
 		//COMPLEMENTO
 		if (!empty($_POST['complemento'])) {
-			$complemento = mysqli_real_escape_string($dbc,trim($_POST['complemento']));
+			$complemento = (isset($_POST['complemento'])) ? mysqli_real_escape_string($dbc,trim($_POST['complemento'])) : NULL;
 		}
 		
 		//BAIRRO
@@ -184,7 +184,7 @@
 										telefone = '$telefone',
 										celular = '$celular',
 										email = '$email',
-										senha = '$senha',
+										senha = '".SHA1('bd_alugmat'.$senha)."',
 										data_alt = NOW()
 					where id = $id";
 			$res = @mysqli_query($dbc,$qry);
@@ -194,7 +194,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>

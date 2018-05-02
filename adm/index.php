@@ -10,7 +10,7 @@
           $_SESSION['id'] = $data['id'];
           $_SESSION['nome'] = $data['nome'];
 
-          $url = absolute_url('menu_principal.php');
+          $url = absolute_url('../index.php');
           header("Location: $url");
           exit();
       }
