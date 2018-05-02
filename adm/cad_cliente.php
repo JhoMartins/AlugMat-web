@@ -1,5 +1,5 @@
 <?php
-	//include_once('../includes/cabecalho.php');
+	include_once('../includes/cabecalho.php');
 	
 	if (isset($_POST['enviou'])) {
 		require_once('../includes/conexao.php');
@@ -233,35 +233,7 @@
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>"; 
 ?>
 
-<html lang="pt-br">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Alugmat</title>
-
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Cadastro de Usuário</a>
-			</div>
-			<div id="navbar" class="navbar-collapsed collapsed">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../menu_principal.html">Início</a></li>
-				<li><a href="#">Contato</a></li>
-				<li><a href="#">Outros</a></li>
-			</ul>
-			</div>
-		</div>
-	</nav>
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
 		
@@ -297,7 +269,9 @@
 		
 		<form action="cad_cliente.php" method="post">
 		  <div id="actions" class="row"> 
+		
 		<div class="form-group col-md-2" >
+			
 			<label for="">Tipo de Pessoa</label>
 			<select id="tipo_pessoa" name="tipo_pessoa" class="form-control" onchange="tipopessoa(tipo_pessoa)">
 				<option value="">Selecione</option>
@@ -331,17 +305,17 @@
 				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php if (isset($_POST['ie'])) echo $_POST['ie']; ?>" disabled>
 			</div>
 
-			<div class="form-group col-md-2">
+			<div class="form-group col-md-3">
 				<label for="longadouro"> * Tipo de Logradouro </label>
 				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php if (isset($_POST['logradouro'])) echo $_POST['logradouro']; ?>">
 			</div>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label for="nome_longadouro"> * Nome do Logradouro </label>
 				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php if (isset($_POST['nome_logradouro'])) echo $_POST['nome_logradouro']; ?>">
 			</div>
 
-			<div class="form-group col-md-1">
+			<div class="form-group col-md-2">
 				<label for="numero"> * Número </label>
 				<input type="text" class="form-control" id="num" name="num" placeholder="" maxlength="5" value="<?php if (isset($_POST['num'])) echo $_POST['num']; ?>">
 			</div>
