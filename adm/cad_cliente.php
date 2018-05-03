@@ -401,7 +401,7 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
+			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
 			<input type="hidden" name="enviou" value="True" />
 			</div>
 		</div>

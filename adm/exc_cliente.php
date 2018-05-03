@@ -176,7 +176,7 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-danger">Excluir</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
+			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
 			<input type="hidden" name="enviou" value="True" />
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>" />
 			</div>

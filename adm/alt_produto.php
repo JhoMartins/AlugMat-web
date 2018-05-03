@@ -74,6 +74,14 @@
 			$fornecedor = mysqli_real_escape_string($dbc,trim($_POST['fornecedor']));
 		}
 		
+		//DESTAQUE
+		if (isset($_POST['destaque']) && $_POST['destaque'] == "") {
+			$erros[] = 'Por favor, informe o se o produto está em Destaque.';
+		}
+		else {
+			$destaque = mysqli_real_escape_string($dbc,trim($_POST['destaque']));
+		}
+		
 		//CARACTERÍSTICAS
 		if (trim($_POST['caracteristicas']) != "") {
 			$caracteristicas = mysqli_real_escape_string($dbc,$_POST['caracteristicas']);
@@ -93,6 +101,7 @@
 										caracteristicas = '$caracteristicas',
 										marca = '$marca',
 										categoria = '$categoria',
+										destaque = '$destaque',
 										fornecedor = '$fornecedor',
 										data_alt = NOW()
 					where id = $id";
@@ -158,6 +167,7 @@
 			</div>
 
 			<div class="form group col-md-2">
+			<br />
 				<label for="">* Status</label>
 				<select class="form-control" name="status">
 					<option value="">Selecione</option>
@@ -168,7 +178,8 @@
 
 		
 
-			<div class="form-group col-md-3" >
+			<div class="form-group col-md-2" >
+			<br />
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca">
 				<option value="">Selecione</option>
@@ -178,7 +189,8 @@
 			</select>
 			</div>
 
-			<div class="form-group col-md-3" >
+			<div class="form-group col-md-2" >
+			<br />
 				<label for="sel1">* Categoria:</label>
 				<select class="form-control" id="sel1" name="categoria">
 					<option value="">Selecione</option>
@@ -189,12 +201,23 @@
 			</div>
 
 			<div class="form-group col-md-4" >
+				<br />
 				<label for="sel1">* Fornecedor:</label>
 				<select class="form-control" id="sel1" name="fornecedor">
 					<option value="">Selecione</option>
 					<option value="fornecedor 1" <?php if ($row[9] == "fornecedor 1") echo "selected"; ?>>Fornecedor 1</option>
 					<option value="fornecedor 2" <?php if ($row[9] == "fornecedor 2") echo "selected"; ?>>Fornecedor 2</option>
 					<option value="fornecedor 3" <?php if ($row[9] == "fornecedor 3") echo "selected"; ?>>Fornecedor 3</option>
+				</select>
+			</div>
+			
+			<div class="form-group col-md-2" >
+				<br/>
+				<label for="sel1">* Destaque:</label>
+				<select class="form-control" id="sel1" name="destaque">
+					<option value="">Selecione</option>
+					<option value="S" <?php if ($row[14] == "S") echo "selected"; ?>>Sim</option>
+					<option value="N" <?php if ($row[14] == "N") echo "selected"; ?>>Não</option>
 				</select>
 			</div>
 
@@ -205,7 +228,7 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
+			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
 			<input type="hidden" name="enviou" value="True" />
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>" />
 			</div>
