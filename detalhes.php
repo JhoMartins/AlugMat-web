@@ -61,7 +61,7 @@ function ampliar_imagem(url,nome_janela,parametros)
 	Marca: <strong><?= $marca; ?></strong><br />
 	Categoria: <strong><?= $categoria; ?></strong><br />
 	Fornecedor: <strong><?= $fornecedor; ?></strong><br />
-	Categoria: <strong><?= $categoria; ?></strong><br />
+	
 	
 	
   </div>
@@ -69,53 +69,21 @@ function ampliar_imagem(url,nome_janela,parametros)
     <div class="row">
 	  <div class="col-md-10">
 	    <h3><strong><?= $descricao; ?></strong></h3>
-		<h4>Valor: R$ <strong><?= number_format($valor_diaria,2,',','.'); ?></strong></h4><br />
-	  </div>
-	  <div class="col-md-2 pull-right">
-	  <!-- se a quantidade em estoque for maior que o estoque minimo -->
-	  <?php if ($status == "S") { ?>
+		<h4>Valor da Diária: R$ <strong><?= number_format($valor_diaria,2,',','.'); ?></strong></h4>
+		Características: <strong><?= $caracteristicas; ?></strong><br /><br /> 
+			  <?php if ($status == "S") { ?>
 	    <a href="cesta.php?produto=<?= $codigo; ?>&inserir=S"
-		  class="btn btn-success" alt="Comprar" />Solicitar</a>
+		  class="btn btn-success" alt="Comprar" />Reservar</a>
 	  <?php } else { ?>
 	    <img src="img/btn_comprar_nd.gif" 
 		alt="Não disponível no estoque" hspace="5"
 		border="0" align="right" />
+
 	  <?php } ?>
-	  </div>
 	</div>
-	
-	
-	
-	<div class="row">
-		<div class="col-md-12">
-		* Pague com Cartão de Crédito ou no Boleto Bancário 
-		<strong>
-		<?= number_format($valor_diaria,2,',','.'); ?>
-		</strong><br />
-		
-		
-		<strong>Formas de Pagamento</strong>
-		<img src="img/banner_formapag.gif"
-			alt="Forma de Pagamento"
-			width="297"
-			height="23"
-			vspace="5" /><br />
-		
-		<strong>Prazos de Entrega</strong><br />
-		2 dias úteis para o estado de São Paulo. <br />
-		5 dias úteis para os demais estados. <br /><br />
-		
-		<strong>Observações</strong><br />
-		As mercadorias adquiridas serão despachadas, 
-		via Sedex (sedex ou e-Sedex), no primeiro dia
-		útil após a comprovação do pagamento,
-		estando a entrega condicionada à disponibilidade 
-		de estoque.
-		Prazo médio de entrega dos Correios: 24 à 72 horas.
-		</div>
-	</div>
-  </div>
-</div>
+
+
+ 
 
 <?php
   mysqli_free_result($rs);
