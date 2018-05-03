@@ -12,8 +12,9 @@
 	} else {
 ?>
 <ul class="nav navbar-nav">
+	<li><a href="adm/menu_principal.php">Painel de Controle</a></li><!-- COLOCAR UM IF. SÓ EXIBIR SE O TIPO DE USUÁRIO FOR ADM -->
 	<li><a href="pedidos.php"> Minhas Reservas </a></li>
-	<li><a href="login.php?cadastro=s"> Meu Cadastro </a></li>
+	<li><a href="adm/alt_cliente.php?id=<?= $_SESSION['id'] ?>"> Meu Cadastro </a></li>
 	<li><a href="cesta.php"> Meu Carrinho 
 	(<?php if (!isset($_SESSION['total_itens'])) 
 		{

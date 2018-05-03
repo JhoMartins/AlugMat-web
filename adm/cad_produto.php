@@ -71,6 +71,12 @@
 		}
 		
 		//DESTAQUE
+		if (isset($_POST['destaque']) && $_POST['destaque'] == "") {
+			$erros[] = 'Por favor, informe o se o produto está em Destaque.';
+		}
+		else {
+			$destaque = mysqli_real_escape_string($dbc,trim($_POST['destaque']));
+		}
 		
 		
 		
@@ -85,6 +91,7 @@
 										caracteristicas, 
 										marca, 
 										categoria, 
+										destaque,
 										fornecedor, 
 										data_inc
 								) values (
@@ -96,6 +103,7 @@
 										'$caracteristicas',
 										'$marca',
 										'$categoria',
+										'$destaque',
 										'$fornecedor',
 										NOW())";
 			$res = @mysqli_query($dbc,$qry);
@@ -220,7 +228,7 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
+			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
 			<input type="hidden" name="enviou" value="True" />
 			</div>
 			</div>
