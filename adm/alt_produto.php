@@ -1,4 +1,5 @@
 <?php
+	$titulo = "Alteração de Produto";
 	include_once('../includes/cabecalho.php');
 	
 	if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) {
