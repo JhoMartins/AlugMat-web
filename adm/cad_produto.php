@@ -1,4 +1,5 @@
 <?php
+	$titulo = "Cadastro de Produto";
 	include_once('../includes/cabecalho.php');
 	
 	if (isset($_POST['enviou'])) {

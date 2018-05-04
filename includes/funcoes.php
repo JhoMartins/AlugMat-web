@@ -25,7 +25,7 @@
 	  
 
 	  if (empty($erros)){
-		$q = "SELECT id, nome FROM cliente WHERE email = '$n' AND senha = '" . SHA1('bd_alugmat'.$s) . "'";
+		$q = "SELECT id, nome, tipo_usuario FROM cliente WHERE email = '$n' AND senha = '" . SHA1('bd_alugmat'.$s) . "'";
 		//die($q);
 		$r = mysqli_query($dbc, $q);
 

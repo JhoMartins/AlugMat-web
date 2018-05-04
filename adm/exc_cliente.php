@@ -1,4 +1,5 @@
 <?php
+	$titulo = "Exclusão de Usuário";
 	include_once('../includes/cabecalho.php');
 	
 	if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) {
@@ -176,7 +177,14 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-danger">Excluir</button>
-			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
+			<?php
+			if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
+				echo '<a href="menu_principal.php" class="btn btn-default">Cancelar</a>';
+			}
+			else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') {
+				echo '<a href="../index.php" class="btn btn-default">Cancelar</a>';
+			}
+			?>
 			<input type="hidden" name="enviou" value="True" />
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>" />
 			</div>

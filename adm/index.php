@@ -9,6 +9,7 @@
           session_start();
           $_SESSION['id'] = $data['id'];
           $_SESSION['nome'] = $data['nome'];
+		  $_SESSION['tipo_usuario'] = $data['tipo_usuario'];
 
           $url = absolute_url('../index.php');
           header("Location: $url");

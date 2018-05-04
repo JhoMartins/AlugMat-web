@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="eng">
   <head>
@@ -9,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title><?php echo $titulo; ?></title>
+    <title><?php echo "Alugmat - " . $titulo; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -48,6 +51,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+			<li><a href="../index.php">Home</a></li>
             <li><a href="logout.php">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->

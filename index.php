@@ -21,6 +21,7 @@
 
 	$r = @mysqli_query($dbc,$q);
 	$total_registros = mysqli_num_rows($r);
+	//die($_SESSION['tipo_usuario']);
 ?>
 
 	<!--Menu Categorias --> 
