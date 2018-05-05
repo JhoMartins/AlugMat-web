@@ -45,7 +45,7 @@
 <!--Título da página e Ordenação de registros -->
 <div class="row">
 	<div class="col-md-8">
-		<h4>Destaques [Total de itens em destaque: <?php echo $total_registros; ?>]</h4>
+		<h4>Total de <?php if ($categoria == 'pecas') echo 'Peças: '; else if ($categoria == 'ferramentas') echo 'Ferramentas: '; else echo 'Máquinas: '; echo $total_registros; ?></h4>
 	</div>
 	<div class="col-md-4">
 		<span class="h4 pull-right"> 
