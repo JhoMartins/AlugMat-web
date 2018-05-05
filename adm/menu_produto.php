@@ -107,6 +107,35 @@
         $saida .= "- Confira a ortografia das palavras
         e se elas foram acentuadas corretamente.<br />";
   }
+
+  if ($pagina > 1) {
+    $pag = '';
+    $pagina_correta = ($inicio/$exiba) + 1;
+
+    if ($pagina_correta !=1){
+      $pag .= '<li class="prior>
+      <a href="menu_produto.php?s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordem . '">Anterior</a><li>';
+    } else {
+      $pag .= '<li class="disabled"><a>Anterior</a></li>';
+    }
+
+    for ($i = 1; $i <= $pagina; $i++) {
+		  if ($i != $pagina_correta) {
+			  $pag .= '<li>
+		    <a href="menu_produto.php?s=' . ($exiba * ($i - 1)) . '&p=' . $pagina . '&ordem=' . $ordem . '">' . $i . '</a></li>';
+		  } else {
+			  $pag .= '<li class="disabled"><a>' .
+		    $i . '</a></li>';
+		  }
+    }
+    
+    if ($pagina_correta != $pagina) {
+		  $pag .= '<li class="next"> <a href="Miniaturas_menu.php?s=' . ($inicio + $exiba) . '&p=' . $pagina . '&ordem=' .
+		  $ordem . '">Próximo</a></li>';
+	  } else {
+		  $pag .= '<li class="disabled"><a>Próximo</a></li>';
+	  }
+  }
 ?>
 
 <div id="main" class="container-fluid">
@@ -148,11 +177,11 @@
   <?php echo $saida; ?>
 </div>
 
-<!-- <div id="botton" class="row">
+<div id="botton" class="row">
   <ul class="pagination">
     <?php if (isset($pag)) {echo $pag;} ?>
   </ul>
-</div> -->
+</div>
   
 
 <?php
