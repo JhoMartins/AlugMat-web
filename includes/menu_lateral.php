@@ -3,9 +3,9 @@
 	//die($_SESSION['tipo_usuario']);
 	if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 		echo
-		'<li><a href="#"><span class="glyphicon glyphicon-send"></span> Link</a></li>
-		<li class="#"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>';
+		'<li><a href="menu_principal.php">Painel de Controle - Início</a></li>
+		<li><a href="#">Gerenciamento de Usuários</a></li>
+		<li class="#"><a href="menu_produto.php">Gerenciamento de Produtos</a></li>';
 	}
 ?>
 </ul>

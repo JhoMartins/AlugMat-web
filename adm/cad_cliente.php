@@ -195,9 +195,10 @@
 										'$telefone',
 										'$celular',
 										'$email',
-										SHA1('bd_alugmat'.$senha),
+										'".SHA1('bd_alugmat'.$senha)."',
 										NOW(),
 										'USU')";
+										//die("<pre>".$qry."</pre>");
 			$res = @mysqli_query($dbc,$qry);
 			
 			if ($res) {
