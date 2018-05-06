@@ -1,4 +1,6 @@
-CREATE DATABASE bd_alugmat
+CREATE DATABASE bd_alugmat;
+
+USE bd_alugmat;
 
 CREATE TABLE PRODUTO (
 ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -16,7 +18,7 @@ DATA_ALT DATETIME,
 CD_CLIENTE INT,
 NOTA FLOAT,
 DESTAQUE CHAR(1)
-)
+);
 
 CREATE TABLE CLIENTE (
 ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,7 +43,7 @@ DATA_INC DATETIME,
 DATA_ALT DATETIME,
 STATUS CHAR(1) NOT NULL,
 TIPO_USUARIO CHAR(3)
-)
+);
 
 CREATE TABLE COMENTARIOS (
 ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +52,7 @@ CD_PRODUTO INT NOT NULL,
 NOTA INT NOT NULL,
 COMENTARIO VARCHAR(65535) NOT NULL,
 CONSTRAINT FK_CLIENTE FOREIGN KEY(CD_CLIENTE) REFERENCES CLIENTE(ID)
-)
+);
 
 
 
@@ -60,9 +62,9 @@ CONSTRAINT FK_CLIENTE FOREIGN KEY(CD_CLIENTE) REFERENCES CLIENTE(ID)
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario
 ) values (
-'J', 'ADMIN', NULL, NULL, '00.000.000/0000-00', '000.000.000.000', 'N/A', 'N/A', 0, NULL, 'N/A', 'N/A', 'SP', NULL, NULL, 'admin@admin.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', NULL, 'ADM')
+'J', 'ADMIN', NULL, NULL, '00.000.000/0000-00', '000.000.000.000', 'N/A', 'N/A', 0, NULL, 'N/A', 'N/A', 'SP', NULL, NULL, 'admin@admin.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', NULL, 'ADM');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario
 ) values (
-'F', 'CLIENTE', '000.000.000-00', '00.000.000-0', NULL, NULL, 'N/A', 'N/A', 0, NULL, 'N/A', 'N/A', 'SP', NULL, NULL, 'cliente@cliente.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', NULL, 'USU')
+'F', 'CLIENTE', '000.000.000-00', '00.000.000-0', NULL, NULL, 'N/A', 'N/A', 0, NULL, 'N/A', 'N/A', 'SP', NULL, NULL, 'cliente@cliente.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', NULL, 'USU');

@@ -76,7 +76,7 @@
 		$categoria = $reg['CATEGORIA'];
 		$fornecedor = $reg['FORNECEDOR'];
 		$cd_cliente = $reg['CD_CLIENTE'];
-		$nota = $reg = ['NOTA'];
+		$nota = $reg['NOTA'];
 		$destaque = $reg['DESTAQUE'];
 
 		//Exibe dados da coluna esquerda
