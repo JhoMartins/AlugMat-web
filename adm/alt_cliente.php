@@ -164,6 +164,14 @@
 			$erros[] = 'Por favor, informe e confirme a Senha.';
 		}
 		
+		//STATUS
+		if (empty($_POST['status'])) {
+			$erros[] = 'Por favor, informe o Status.';
+		}
+		else {
+			$status = mysqli_real_escape_string($dbc,trim($_POST['status']));
+		}
+		
 		
 		
 		//Se não há nenhum erro, inserir registro no banco de dados
@@ -185,7 +193,8 @@
 										celular = '$celular',
 										email = '$email',
 										senha = '".SHA1('bd_alugmat'.$senha)."',
-										data_alt = NOW()
+										data_alt = NOW(),
+										status = '$status'
 					where id = $id";
 			$res = @mysqli_query($dbc,$qry);
 			
@@ -194,7 +203,12 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
+				if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') {
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
+				}
+				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_cliente.php'>";
+				}
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>
@@ -243,7 +257,7 @@
 				</select>
 			</div>		
 					
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-4">
 				<label for="nome"> * Nome</label>
 				<input type="text" class="form-control" name="nome" id="nome" placeholder="" maxlength="50" value="<?php echo $row[2]; ?>">
 			</div>
@@ -273,13 +287,13 @@
 				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php echo $row[7]; ?>">
 			</div>
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label for="nome_longadouro"> * Nome do Logradouro </label>
 				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php echo $row[8]; ?>">
 			</div>
 
 			<div class="form-group col-md-1">
-				<label for="numero"> * Número </label>
+				<label for="numero"> * Núm. </label>
 				<input type="text" class="form-control" id="num" name="num" placeholder="" maxlength="5" value="<?php echo $row[9]; ?>">
 			</div>
 
@@ -343,21 +357,31 @@
 				<input type="text" class="form-control" id="email" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php echo $row[15]; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-4">
 				<label for="email"> * E-mail </label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu endereço de e-mail" maxlength="80" value="<?php echo $row[16]; ?>">
 			</div>
 
-			<div class="form-group col-md-2">
+			<div class="form-group col-md-3">
 				<label for="senha">* Senha</label>
 				<input type="password" class="form-control" id="senha" name="senha" maxlength="10" placeholder="Digite a senha">
 			</div>	
 
-			<div class="row">
-			<div class="form-group col-md-2">
+			<div class="form-group col-md-3">
 				<label for="senhac">* Confirmar Senha</label>
 				<input type="password" class="form-control" id="senhac" name="senhac" maxlength="10" placeholder="Confirme a senha">
 			</div>
+			
+			<div class="form-group col-md-2" >
+				<label for="estado">* Status:</label>
+				<select class="form-control" id="status" name="status">
+					<option value="">Selecione</option>
+					<option value="S" <?php if ($row[20] == "S") echo "selected"; ?>>Ativo</option>
+					<option value="N" <?php if ($row[20] == "N") echo "selected"; ?>>Inativo</option>
+			</select>
+			</div>
+			
+			<div class="row">
 			</div>
 
 			<hr />
@@ -366,7 +390,7 @@
 			<input type="submit" class="btn btn-primary" value="Salvar"><!-- >Salvar</button> -->
 			<?php
 			if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
-				echo '<a href="menu_principal.php" class="btn btn-default">Cancelar</a>';
+				echo '<a href="menu_cliente.php" class="btn btn-default">Cancelar</a>';
 			}
 			else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') {
 				echo '<a href="../index.php" class="btn btn-default">Cancelar</a>';

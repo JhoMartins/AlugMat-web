@@ -113,7 +113,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_produto.php'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>
@@ -229,7 +229,7 @@
 			
 			<div class="col-md-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>
-			<a href="menu_principal.php" class="btn btn-default">Cancelar</a>
+			<a href="menu_produto.php" class="btn btn-default">Cancelar</a>
 			<input type="hidden" name="enviou" value="True" />
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>" />
 			</div>
