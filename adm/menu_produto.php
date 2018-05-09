@@ -130,7 +130,7 @@
     }
     
     if ($pagina_correta != $pagina) {
-		  $pag .= '<li class="next"> <a href="Miniaturas_menu.php?s=' . ($inicio + $exiba) . '&p=' . $pagina . '&ordem=' .
+		  $pag .= '<li class="next"> <a href="menu_produto.php?s=' . ($inicio + $exiba) . '&p=' . $pagina . '&ordem=' .
 		  $ordem . '">Próximo</a></li>';
 	  } else {
 		  $pag .= '<li class="disabled"><a>Próximo</a></li>';
