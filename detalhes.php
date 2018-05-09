@@ -23,6 +23,67 @@
 		$nota = $reg["NOTA"];
 ?>
 
+<?php
+if (isset($_POST['enviou'])) {
+		require_once('../includes/conexao.php');
+		
+		$erros = array();
+//Comentário
+		if (trim($_POST['Comentarios']) != "") {
+			$Comentarios = mysqli_real_escape_string($dbc,$_POST['Comentarios']);
+		}
+		else {
+			$caracteristicas = NULL;
+		}
+
+		if (empty($erros)) {
+			$qry = "insert into Comentarios (
+										Comentario
+								) values (
+										'$Comentarios',
+										NOW())";
+			$res = @mysqli_query($dbc,$qry);
+			
+			if ($res) {
+				$sucesso = "<h1><strong>Sucesso!</strong></h1>
+							<p>Seu registro foi incluido com sucesso!</p>
+							<p>Aguarde... Redirecionando!</p>";
+				
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+			}
+			else {
+				$erro = "<h1><strong>Erro no Sistema</strong></h1>
+						 <p>Você não pode ser registrado devido a um erro do sistema. Pedimos desculpas por qualquer inconveniente.</p>";
+				
+				$erro .= '<p>' . mysqli_error($dbc) . '<br /> Query: ' . $q . '</p>';
+			}
+		}
+		
+		//Se existem erros, exibir para o usuário
+		else {
+			$erro = "<h1><strong>Erro!</strong></h1>
+					 <p>Ocorreram o(s) seguinte(s) erro(s):<br />";
+					 
+			foreach ($erros as $msg) {
+				$erro .= " - $msg <br /> \n";
+			}
+			$erro .= "</p><p>Por favor, tente novamente.</p>";
+		}
+		
+		mysqli_close($dbc);
+	}
+?>
+
+
+
+
+
+
+
+
+
+
+<script src="funcoes.js"></script>
 <script type="text/JavaScript">
 //Função de abertura da janela de imagens ampliadas
 function ampliar_imagem(url,nome_janela,parametros)
@@ -81,7 +142,34 @@ function ampliar_imagem(url,nome_janela,parametros)
 
 	  <?php } ?>
 	</div>
-
+</div>
+</div>
+	
+			<form class="form-group col-md-10">
+				<div>
+					<label>Deixe Seu Comentário</label>
+					<textarea class="form-control counted" name="message" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
+				</div>	
+				<a href="javascript:void(0)" onclick="Avaliar(1)">
+				<img src="img/star0.png" id="s1"></a>
+				
+				<a href="javascript:void(0)" onclick="Avaliar(2)">
+				<img src="img/star0.png" id="s2"></a>
+				
+				<a href="javascript:void(0)" onclick="Avaliar(3)">
+				<img src="img/star0.png" id="s3"></a>
+				
+				<a href="javascript:void(0)" onclick="Avaliar(4)">
+				<img src="img/star0.png" id="s4"></a>
+				
+				<a href="javascript:void(0)" onclick="Avaliar(5)">
+				<img src="img/star0.png" id="s5"></a>
+				<label id="rating">1</label>	
+				<br />
+				<br/>
+				<button type="submit" class="btn btn-primary">Enviar Comentário</button>
+			</form>	
+			
 
  
 
