@@ -143,6 +143,9 @@
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>";
 ?>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="../js/masks.js"></script>
 
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Produto</h3>
@@ -161,7 +164,7 @@
 
 			<div class="form group col-md-3">
 				<label>* Valor da diária</label>
-				<input type="text" name="valor_diaria" maxlength="8" class="form-control" value="<?php if (isset($_POST['valor_diaria'])) echo $_POST['valor_diaria']; ?>">
+				<input type="text" name="valor_diaria" maxlength="8" class="form-control" id="valor_diaria" value="<?php if (isset($_POST['valor_diaria'])) echo $_POST['valor_diaria']; ?>">
 			</div>
 
 
