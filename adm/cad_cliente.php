@@ -248,10 +248,14 @@
 	
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>"; 
 ?>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+   <script src="../js/masks.js"></script>
 
 
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
+        </script>
 		
 		<script>
 		function tipopessoa(e) { 
@@ -303,7 +307,7 @@
 
 			<div class="form-group col-md-2">
 				<label for="cpf"> * CPF</label>
-				<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php if (isset($_POST['cpf'])) echo $_POST['cpf']; ?>" disabled>
+				<input type="text" class="form-control cpf" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php if (isset($_POST['cpf'])) echo $_POST['cpf']; ?>" disabled>
 			</div>
 			
 			<div class="form-group col-md-2">
@@ -388,12 +392,12 @@
 
 			<div class="form-group col-md-2">
 				<label for="telefone"> * Telefone </label>
-				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00)0000-0000" maxlength="13" value="<?php if (isset($_POST['telefone'])) echo $_POST['telefone']; ?>">
+				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00) 0000-0000" maxlength="14" value="<?php if (isset($_POST['telefone'])) echo $_POST['telefone']; ?>">
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="email"> * Celular </label>
-				<input type="text" class="form-control" id="email" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php if (isset($_POST['celular'])) echo $_POST['celular']; ?>">
+				<input type="text" class="form-control" id="celular" name="celular" placeholder="Ex.: (00) 00000-0000" maxlength="15" value="<?php if (isset($_POST['celular'])) echo $_POST['celular']; ?>">
 			</div>
 
 			<div class="form-group col-md-4">
