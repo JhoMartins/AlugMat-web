@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (!isset($_SESSION['id'])) {
+		session_start();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="eng">
@@ -47,7 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Loja de Miniaturas</a>
+          <a class="navbar-brand" href="#">Alugmat</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

@@ -68,3 +68,115 @@ insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
 'F', 'CLIENTE', '000.000.000-00', '00.000.000-0', NULL, NULL, 'N/A', 'N/A', 0, NULL, 'N/A', 'N/A', 'SP', NULL, NULL, 'cliente@cliente.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', NULL, 'USU', 'S');
+
+
+
+
+
+
+
+-- FERRAMENTAS
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Chave de Fenda', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Produto 02', '657897', '25.80', 'S', 'N', 'Descrição Teste', 'Bracol', 'ferramentas', 'fornecedor 1', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Prod Teste', 'ASD456', '10.00', 'S', 'S', 'Prod. Desc. Teste', '3M', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 01', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 02', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 03', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 04', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 05', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 06', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 07', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 08', 'C123', '5.50', 'S', 'S', 'Chave de Fenda Teste', 'Bosh', 'ferramentas', 'fornecedor 1', Now(), 'S');
+
+
+
+-- MÁQUINAS
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Furadeira', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 01', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 02', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 03', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 04', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 05', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 06', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 07', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 08', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 09', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Teste Alinhamento 10', 'F321', '30.00', 'S', 'S', 'Furadeira compatível com brocas X, Y e Z', 'Bracol', 'maquinas', 'fornecedor 2', Now(), 'N');
+
+
+
+-- PEÇAS
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'S');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'N');
+
+insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
+values ('Produto 01', 'TESTE123', '58.75', 'S', 'S', 'Teste', '3M', 'pecas', 'fornecedor 3', Now(), 'S');
