@@ -6,7 +6,7 @@
 
   require_once('../includes/conexao.php');
 
-  $exiba = 3;
+  $exiba = 5;
 
   $where = mysqli_real_escape_string($dbc, trim(isset($_GET['q'])) ? $_GET['q'] : '');
 
@@ -41,13 +41,19 @@
         $order_by = 'nome';
         break;
 	  case 'cpf_cnpj':
-        $order_by = 'cpf_cnpj';
+        $order_by = 'cpf, cnpj';
         break;
 	  case 'rg_ie':
-        $order_by = 'rg_ie';
+        $order_by = 'rg, ie';
         break;
       case 'cidade':
         $order_by = 'cidade';
+        break;
+	  case 'telefone':
+        $order_by = 'telefone';
+        break;
+	  case 'celular':
+        $order_by = 'celular';
         break;
       case 'status':
         $order_by = 'status';
@@ -71,8 +77,8 @@
 			   telefone,
 			   celular,
 			   (case
-			    when status = 'A' then 'Ativo'
-				when status = 'I' then 'Inativo'
+			    when status = 'S' then 'Ativo'
+				when status = 'N' then 'Inativo'
 				else ''
 				end) as status,
 			   tipo_usuario
@@ -89,22 +95,22 @@
         <tr>
           <th width="3%"><strong>
             <a href="menu_cliente.php?ordem=id">ID</a></strong></th>
-          <th width="5%"><strong>
+          <th width="23%"><strong>
             <a href="menu_cliente.php?ordem=nome">Nome</a></strong></th>
           <th width="5%"><strong>
             <a href="menu_cliente.php?ordem=cpf_cnpj">CPF/CNPJ</a></strong></th>
           <th width="5%"><strong>
             <a href="menu_cliente.php?ordem=rg_ie">RG/IE</a></strong></th>
-          <th width="5%"><strong>
+          <th width="14%"><strong>
             <a href="menu_cliente.php?ordem=cidade">Cidade</a></strong></th>
-		  <th width="5%"><strong>
+		  <th width="7%"><strong>
             <a href="menu_cliente.php?ordem=telefone">Telefone</a></strong></th>
-		  <th width="5%"><strong>
+		  <th width="7%"><strong>
             <a href="menu_cliente.php?ordem=celular">Celular</a></strong></th>
 		  <th width="5%"><strong>
             <a href="menu_cliente.php?ordem=status">Status</a></strong></th>
 		  <th width="5%"><strong>
-            <a href="menu_cliente.php?ordem=tipo_usuario">Tipo Usuário</a></strong></th>
+            <a href="menu_cliente.php?ordem=tipo_usuario">Tipo</a></strong></th>
         </tr>
       </thead> <tbody>';
 
@@ -142,7 +148,7 @@
     $pagina_correta = ($inicio/$exiba) + 1;
 
     if ($pagina_correta !=1){
-      $pag .= '<li class="prior>
+      $pag .= '<li class="prior">
       <a href="menu_cliente.php?s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordem . '">Anterior</a><li>';
     } else {
       $pag .= '<li class="disabled"><a>Anterior</a></li>';

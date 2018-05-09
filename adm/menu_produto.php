@@ -6,7 +6,7 @@
 
   require_once('../includes/conexao.php');
 
-  $exiba = 3;
+  $exiba = 5;
 
   $where = mysqli_real_escape_string($dbc, trim(isset($_GET['q'])) ? $_GET['q'] : '');
 
@@ -43,6 +43,15 @@
       case 'desc':
         $order_by = 'descricao';
         break;
+	  case 'marca':
+        $order_by = 'marca';
+        break;
+	  case 'categoria':
+        $order_by = 'categoria';
+        break;
+	  case 'fornecedor':
+        $order_by = 'fornecedor';
+        break;
       case 'd':
         $order_by = 'valor_diaria';
         break;
@@ -58,7 +67,7 @@
         break;
   }
 
-  $q = "SELECT id, descricao, cd_interno, valor_diaria, disponivel, nota FROM produto ORDER BY $order_by LIMIT $inicio, $exiba";
+  $q = "SELECT id, descricao, cd_interno, valor_diaria, disponivel, nota, marca, categoria, fornecedor FROM produto WHERE descricao LIKE '%$where%' ORDER BY $order_by LIMIT $inicio, $exiba";
   $r = @mysqli_query($dbc, $q);
 
   if (mysqli_num_rows($r) > 0) {
@@ -66,27 +75,48 @@
       <table class="table table-striped">
       <thead>
         <tr>
+          <th width="5%"><strong>
+            <a href="menu_produto.php?ordem=id">ID</a></strong></th>
           <th width="10%"><strong>
-            <a href="menu_produto.php?ordem=id">Código</a></strong></th>
-          <th width="10%"><strong>
-            <a href="menu_produto.php?ordem=cd">Cd Interno</a></strong></th>
-          <th width="40%"><strong>
+            <a href="menu_produto.php?ordem=cd">Cód. Interno</a></strong></th>
+          <th width="20%"><strong>
             <a href="menu_produto.php?ordem=desc">Descrição</a></strong></th>
-          <th width="10%"><strong>
-            <a href="menu_produto.php?ordem=d">Diária</a></strong></th>
-          <th width="10%"><strong>
-            <a href="menu_produto.php?ordem=disp">Disponível</a></strong></th>
-          <th width="10%"><strong>
+		  <th width="10%"><strong>
+            <a href="menu_produto.php?ordem=marca">Marca</a></strong></th>
+		  <th width="10%"><strong>
+            <a href="menu_produto.php?ordem=categoria">Categoria</a></strong></th>
+		  <th width="17%"><strong>
+            <a href="menu_produto.php?ordem=fornecedor">Fornecedor</a></strong></th>
+          <th width="8%"><strong>
+            <a href="menu_produto.php?ordem=d">Valor Diária</a></strong></th>
+          <th width="5%"><strong>
+            <a href="menu_produto.php?ordem=disp">Disp.</a></strong></th>
+          <th width="5%"><strong>
             <a href="menu_produto.php?ordem=nota">Nota</a></strong></th>
           <th></th>
         </tr>
       </thead> <tbody>';
 
+	  
       while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		  
+		  if ($row['categoria'] == 'pecas') {
+		  $cat = 'Peças';
+		  }
+		  else if ($row['categoria'] == 'maquinas') {
+			  $cat = 'Máquinas';
+		  }
+		  else {
+			  $cat = 'Ferramentas';
+		  }
+		  
           $saida .= '<tr>
           <td>' . $row['id'] . '</td>
           <td>' . $row['cd_interno'] . '</td>
           <td>' . $row['descricao'] . '</td>
+		  <td>' . $row['marca'] . '</td>
+		  <td>' . $cat . '</td>
+		  <td>' . $row['fornecedor'] . '</td>
           <td>R$ ' . $row['valor_diaria'] . '</td>
           <td>' . $row['disponivel'] . '</td>
           <td>' . $row['nota'] . '</td>
@@ -112,8 +142,8 @@
     $pag = '';
     $pagina_correta = ($inicio/$exiba) + 1;
 
-    if ($pagina_correta !=1){
-      $pag .= '<li class="prior>
+    if ($pagina_correta != 1){
+      $pag .= '<li class="prior">
       <a href="menu_produto.php?s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordem . '">Anterior</a><li>';
     } else {
       $pag .= '<li class="disabled"><a>Anterior</a></li>';

@@ -1,3 +1,4 @@
+<div height="100%">
 <ul class="nav nav-sidebar">
 <?php
 	//die($_SESSION['tipo_usuario']);
@@ -9,3 +10,4 @@
 	}
 ?>
 </ul>
+</div>

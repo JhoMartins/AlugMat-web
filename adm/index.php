@@ -4,12 +4,13 @@
       require_once('../includes/funcoes.php');
 
       list($check, $data) = check_login($dbc, $_POST['iptLogin'], $_POST['iptSenha']);
-
+	  
       if ($check) {
           session_start();
           $_SESSION['id'] = $data['id'];
           $_SESSION['nome'] = $data['nome'];
 		  $_SESSION['tipo_usuario'] = $data['tipo_usuario'];
+		  $_SESSION['status'] = $data['status'];
 
           $url = absolute_url('../index.php');
           header("Location: $url");
@@ -25,7 +26,6 @@
           foreach ($erros as $msg) {
               $saida .= " - $msg <br /> \n";
           }
-          $saida .= '<p>Por favor, tente novamente.</p>';
       }
   }
 ?>
