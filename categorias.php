@@ -3,29 +3,71 @@
 	require_once('includes/cabecalho_site.php');
 	require_once('includes/conexao.php');
 
+	$exiba = 10;
+	//$where = mysqli_real_escape_string($dbc, trim(isset($_GET['q'])) ? $_GET['q'] : '');
+	
 	//Recuperar as categorias
 	$categoria = $_GET['categoria'];
 
+	//Seleciona as miniaturas pelo id de categoria
+	if (is_numeric($_GET['p'])) {
+		$pagina = $_GET['p'];
+	}
+	else {
+		$q = "select count(id) from produto where descricao like '%$where%'";
+		$r = @mysqli_query($dbc,$q);
+		$row = @mysqli_fetch_array($r, MYSQL_NUM);
+		$qtde = $row[0];
+		
+		if ($qtde > $exiba) {
+			$pagina = ceil($qtde/$exiba);
+		}
+		else {
+			$pagina = 1;
+		}
+	}
+	
+	if (isset($_GET['s']) && is_numeric($_GET['s'])) {
+		$inicio = $_GET['s'];
+	}
+	else {
+		$inicio = 0;
+	}
+
+	
 	//Ordenação das ofertas por ordem de preço
 	$ordenar = isset($_GET['ordenar']);
-		if ($ordenar == "")
-		{
-			$ordenar = "valor_diaria desc";
-		}
-		else
-		{
-			$ordenar = $_GET['ordenar'];
-		}
-
-	//Seleciona as miniaturas pelo id de categoria
+	if ($ordenar == "")
+	{
+		$ordenar = "valor_diaria desc";
+	}
+	else
+	{
+		$ordenar = $_GET['ordenar'];
+	}
+	
+	
 	$qry = "select * from produto
 		  where categoria = '" . $categoria . "'
-		    and status = 'S' 
+			and status = 'S' 
 		  order by " . $ordenar;
 	//die("<pre>".$qry."</pre>");
 	
 	$res = @mysqli_query($dbc,$qry);
 	$total_registros = mysqli_num_rows($res);
+	
+	if ($pagina > 1) {
+		$pag = '';
+		$pagina_correta = ($inicio/$exiba) + 1;
+		
+		if ($pagina_correta != 1) {
+			$pag .= '<li class="prior"><a href="menu_cliente.php?s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordem . '">Anterior</a><li>';
+		}
+		else {
+			$pag .= '<li class="disabled"><a>Anterior</a></li>';
+		}
+	}
+	
 ?>
 
 	<!--Menu Categorias --> 
