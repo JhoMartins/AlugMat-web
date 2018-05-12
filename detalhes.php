@@ -144,29 +144,24 @@ function ampliar_imagem(url,nome_janela,parametros)
 	</div>
 </div>
 </div>
-	
-			<form class="form-group col-md-10">
+	<form class="form-group col-md-8">
 				<div>
-					<label>Deixe Seu Comentário</label>
+					<h4>Deixe Seu Comentário</h4>
 					<textarea class="form-control counted" name="message" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
 				</div>	
-				<a href="javascript:void(0)" onclick="Avaliar(1)">
-				<img src="img/star0.png" id="s1"></a>
-				
-				<a href="javascript:void(0)" onclick="Avaliar(2)">
-				<img src="img/star0.png" id="s2"></a>
-				
-				<a href="javascript:void(0)" onclick="Avaliar(3)">
-				<img src="img/star0.png" id="s3"></a>
-				
-				<a href="javascript:void(0)" onclick="Avaliar(4)">
-				<img src="img/star0.png" id="s4"></a>
-				
-				<a href="javascript:void(0)" onclick="Avaliar(5)">
-				<img src="img/star0.png" id="s5"></a>
-				<label id="rating">1</label>	
+				<div class="wrapper" >
+ 					<input type="checkbox" id="st1" value="1" />
+ 					<label for="st1"></label>
+ 					<input type="checkbox" id="st2" value="2" />
+ 					<label for="st2"></label>
+ 					<input type="checkbox" id="st3" value="3" />
+ 					<label for="st3"></label>
+ 					<input type="checkbox" id="st4" value="4" />
+ 					<label for="st4"></label>
+ 					<input type="checkbox" id="st5" value="5" />
+ 					<label for="st5"></label>
+				</div>
 				<br />
-				<br/>
 				<button type="submit" class="btn btn-primary">Enviar Comentário</button>
 			</form>	
 			
