@@ -133,6 +133,7 @@
 			}
 			$erro .= "</p><p>Por favor, tente novamente.</p>";
 		}
+		mysqli_close($dbc);
 	}
 	
 	//Pesquisa para exibir o registro para alteração

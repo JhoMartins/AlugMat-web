@@ -13,7 +13,7 @@
   if (isset($_GET['p']) && is_numeric($_GET['p'])) {
       $pagina = $_GET['p'];
   } else {
-    $qry = "SELECT COUNT(id) FROM cliente WHERE like '%$where%'";
+    $qry = "SELECT COUNT(id) FROM cliente WHERE nome like '%$where%'";
     $res = @mysqli_query($dbc, $qry);
     $row = @mysqli_fetch_array($res, MYSQLI_NUM);
     $qtde = $row[0];

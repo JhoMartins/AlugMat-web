@@ -1,47 +1,53 @@
 <?php
-  $titulo = "Loja de Miniatura";
-  require_once('includes/cabecalho_site.php');
-  require_once('includes/conexao.php');
-  
-  $produto = $_GET['produto'];
-  
-  $sql = "select * from produto 
-  where id = '" . $produto . "'";
-			
-  $rs = mysqli_query($dbc, $sql);
-  $reg = mysqli_fetch_array($rs);
-  
-		$descricao = $reg["DESCRICAO"];
-		$cd_interno = $reg["CD_INTERNO"];
-		$valor_diaria = $reg["VALOR_DIARIA"];
-		$status = $reg["STATUS"];
-		$disponivel = $reg["DISPONIVEL"];
-		$caracteristicas = $reg["CARACTERISTICAS"];
-		$categoria = $reg["CATEGORIA"];
-		$marca = $reg["MARCA"];
-		$fornecedor = $reg["FORNECEDOR"];
-		$nota = $reg["NOTA"];
-?>
+	$titulo = "Loja de Miniatura";
+	require_once('includes/cabecalho_site.php');
+	
+	if ((isset($_GET['produto'])) && (is_numeric($_GET['produto']))) {
+		$produto = $_GET['produto'];
+	}
+	else if ((isset($_POST['produto'])) && (is_numeric($_POST['produto']))) {
+		$produto = $_POST['produto'];
+	}
+	else {
+		exit;
+	}
 
-<?php
-if (isset($_POST['enviou'])) {
-		require_once('../includes/conexao.php');
-		
+	require_once('includes/conexao.php');
+
+	
+	
+	if (isset($_POST['enviou'])) {
 		$erros = array();
-//Comentário
-		if (trim($_POST['Comentarios']) != "") {
-			$Comentarios = mysqli_real_escape_string($dbc,$_POST['Comentarios']);
+		
+		//COMENTÁRIO
+		if (trim($_POST['comentario']) != "") {
+			
+			$comentario = mysqli_real_escape_string($dbc,$_POST['comentario']);
 		}
 		else {
-			$caracteristicas = NULL;
+			$erros[] = "Por favor, digite um comentário sobre o produto.";
 		}
-
+		
+		//NOTA
+		if (!isset($_POST['nota'])) {
+			$erros[] = "Por favor, informe uma quantidade de estrelas para o produto.";
+		}
+		else {
+			$nota = $_POST['nota'];
+		}
+		
 		if (empty($erros)) {
-			$qry = "insert into Comentarios (
-										Comentario
+			$qry = "insert into comentarios (
+										cd_cliente,
+										cd_produto,
+										nota,
+										comentario
 								) values (
-										'$Comentarios',
-										NOW())";
+										".$_SESSION['id'].",
+										$produto,
+										$nota,
+										'$comentario')";
+										//die($qry);
 			$res = @mysqli_query($dbc,$qry);
 			
 			if ($res) {
@@ -61,27 +67,43 @@ if (isset($_POST['enviou'])) {
 		
 		//Se existem erros, exibir para o usuário
 		else {
+			
 			$erro = "<h1><strong>Erro!</strong></h1>
 					 <p>Ocorreram o(s) seguinte(s) erro(s):<br />";
 					 
 			foreach ($erros as $msg) {
+				
 				$erro .= " - $msg <br /> \n";
 			}
+			
 			$erro .= "</p><p>Por favor, tente novamente.</p>";
 		}
-		
-		mysqli_close($dbc);
 	}
+	
+	
+	$sql = "select * from produto where id = $produto";
+	$rs = mysqli_query($dbc, $sql);
+	//die(var_dump($rs));
+	if (mysqli_num_rows($rs) == 1) {
+	
+		$reg = mysqli_fetch_array($rs);
+	
+		$id = $reg["ID"];
+		$descricao = $reg["DESCRICAO"];
+		$cd_interno = $reg["CD_INTERNO"];
+		$valor_diaria = $reg["VALOR_DIARIA"];
+		$status = $reg["STATUS"];
+		$disponivel = $reg["DISPONIVEL"];
+		$caracteristicas = $reg["CARACTERISTICAS"];
+		$categoria = $reg["CATEGORIA"];
+		$marca = $reg["MARCA"];
+		$fornecedor = $reg["FORNECEDOR"];
+		$nota = (isset($reg["NOTA"])) ? $reg["NOTA"] : 0;
+		
+		if (isset($erro)) echo "<div class='alert alert-danger'>$erro</div>"; 
+		
+		if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>";
 ?>
-
-
-
-
-
-
-
-
-
 
 <script src="funcoes.js"></script>
 <script type="text/JavaScript">
@@ -118,10 +140,10 @@ function ampliar_imagem(url,nome_janela,parametros)
  <h4>Dados técnicos</h4>
 	Código: <strong><?= $cd_interno; ?></strong><br />
 	Descrição: <strong><?= $descricao; ?></strong><br />
-	Características: <strong><?= $caracteristicas; ?></strong><br />
 	Marca: <strong><?= $marca; ?></strong><br />
 	Categoria: <strong><?= $categoria; ?></strong><br />
 	Fornecedor: <strong><?= $fornecedor; ?></strong><br />
+	Avaliação: <strong><?php if ($nota == 0) { echo "Não há avaliações para este produto."; } else if ($nota <= 1) { echo $nota . " estrela"; } else { echo $nota . " estrelas"; }?></strong><br />
 	
 	
 	
@@ -144,31 +166,36 @@ function ampliar_imagem(url,nome_janela,parametros)
 	</div>
 </div>
 </div>
-	<form class="form-group col-md-8">
-				<div>
-					<h4>Deixe Seu Comentário</h4>
-					<textarea class="form-control counted" name="message" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
-				</div>	
-				<div class="wrapper" >
- 					<input type="checkbox" id="st1" value="1" />
- 					<label for="st1"></label>
- 					<input type="checkbox" id="st2" value="2" />
- 					<label for="st2"></label>
- 					<input type="checkbox" id="st3" value="3" />
- 					<label for="st3"></label>
- 					<input type="checkbox" id="st4" value="4" />
- 					<label for="st4"></label>
- 					<input type="checkbox" id="st5" value="5" />
- 					<label for="st5"></label>
-				</div>
-				<br />
-				<button type="submit" class="btn btn-primary">Enviar Comentário</button>
-			</form>	
+	<form class="form-group col-md-8" method="post" action="">
+		<div>
+			<h4>Deixe Seu Comentário</h4>
+			<textarea class="form-control counted" name="comentario" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
+		</div>
+		
+		<div class="wrapper" >
+			<input type="radio" id="st1" name="nota" value="5" <?php if (isset($_POST['nota']) && $_POST['nota'] == 5) { echo 'checked'; }?> />
+			<label for="st1"></label>
+			<input type="radio" id="st2" name="nota" value="4" <?php if (isset($_POST['nota']) && $_POST['nota'] == 4) { echo 'checked'; }?> />
+			<label for="st2"></label>
+			<input type="radio" id="st3" name="nota" value="3" <?php if (isset($_POST['nota']) && $_POST['nota'] == 3) { echo 'checked'; }?> />
+			<label for="st3"></label>
+			<input type="radio" id="st4" name="nota" value="2" <?php if (isset($_POST['nota']) && $_POST['nota'] == 2) { echo 'checked'; }?> />
+			<label for="st4"></label>
+			<input type="radio" id="st5" name="nota" value="1" <?php if (isset($_POST['nota']) && $_POST['nota'] == 1) { echo 'checked'; }?> />
+			<label for="st5"></label>
+		</div>
+		
+		<br />
+		<button type="submit" class="btn btn-primary">Enviar Comentário</button>
+		<input type="hidden" name="enviou" value="True" />
+		<input type="hidden" name="produto" value="<?= $id; ?>" />
+	</form>	
 			
+	<?php
+		include_once("includes/rodape.php");
+	
+	}
 
- 
-
-<?php
-  mysqli_free_result($rs);
-  mysqli_close($dbc);
+		mysqli_free_result($rs);
+		mysqli_close($dbc);
 ?>
