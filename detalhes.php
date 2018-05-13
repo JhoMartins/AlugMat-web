@@ -37,6 +37,7 @@
 		}
 		
 		if (empty($erros)) {
+			
 			$qry = "insert into comentarios (
 										cd_cliente,
 										cd_produto,
@@ -50,12 +51,24 @@
 										//die($qry);
 			$res = @mysqli_query($dbc,$qry);
 			
+			$soma_notas = "select sum(nota) total_nota from comentarios where cd_produto = $produto";
+			$res_soma_notas = mysqli_query($dbc,$soma_notas);
+			$total_nota = mysqli_fetch_array($res_soma_notas);
+			
+			$conta_avaliacoes = "select count(*) total_avaliacoes from comentarios where cd_produto = $produto";
+			$res_conta_avaliacoes = mysqli_query($dbc,$conta_avaliacoes);
+			$total_avaliacoes = mysqli_fetch_array($res_conta_avaliacoes);
+			
+			$nota_media = $total_nota['total_nota'] / $total_avaliacoes['total_avaliacoes'];
+			
+			$upd = "update produto set nota = $nota_media where id = $produto";
+			$res_upd = mysqli_query($dbc,$upd);
+			
 			if ($res) {
 				$sucesso = "<h1><strong>Sucesso!</strong></h1>
-							<p>Seu registro foi incluido com sucesso!</p>
-							<p>Aguarde... Redirecionando!</p>";
+							<p>Seu comentário foi enviado com sucesso!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=detalhes.php?produto=$produto'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>
@@ -166,22 +179,23 @@ function ampliar_imagem(url,nome_janela,parametros)
 	</div>
 </div>
 </div>
+<div class="row">
 	<form class="form-group col-md-8" method="post" action="">
 		<div>
 			<h4>Deixe Seu Comentário</h4>
-			<textarea class="form-control counted" name="comentario" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
+			<textarea class="form-control counted" name="comentario" <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo 'placeholder="Faça login para deixar seu comentário."'; } else { echo 'placeholder="Digite seu Comentário"'; } ?> rows="5" style="margin-bottom:10px;" <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?>><?php if (isset($comentario)) { echo $comentario; } ?></textarea>
 		</div>
 		
-		<div class="wrapper" >
-			<input type="radio" id="st1" name="nota" value="5" <?php if (isset($_POST['nota']) && $_POST['nota'] == 5) { echo 'checked'; }?> />
+		<div class="wrapper">
+			<input type="radio" id="st1" name="nota" value="5" <?php if (isset($_POST['nota']) && $_POST['nota'] == 5) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st1"></label>
-			<input type="radio" id="st2" name="nota" value="4" <?php if (isset($_POST['nota']) && $_POST['nota'] == 4) { echo 'checked'; }?> />
+			<input type="radio" id="st2" name="nota" value="4" <?php if (isset($_POST['nota']) && $_POST['nota'] == 4) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st2"></label>
-			<input type="radio" id="st3" name="nota" value="3" <?php if (isset($_POST['nota']) && $_POST['nota'] == 3) { echo 'checked'; }?> />
+			<input type="radio" id="st3" name="nota" value="3" <?php if (isset($_POST['nota']) && $_POST['nota'] == 3) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st3"></label>
-			<input type="radio" id="st4" name="nota" value="2" <?php if (isset($_POST['nota']) && $_POST['nota'] == 2) { echo 'checked'; }?> />
+			<input type="radio" id="st4" name="nota" value="2" <?php if (isset($_POST['nota']) && $_POST['nota'] == 2) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st4"></label>
-			<input type="radio" id="st5" name="nota" value="1" <?php if (isset($_POST['nota']) && $_POST['nota'] == 1) { echo 'checked'; }?> />
+			<input type="radio" id="st5" name="nota" value="1" <?php if (isset($_POST['nota']) && $_POST['nota'] == 1) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st5"></label>
 		</div>
 		
@@ -190,12 +204,128 @@ function ampliar_imagem(url,nome_janela,parametros)
 		<input type="hidden" name="enviou" value="True" />
 		<input type="hidden" name="produto" value="<?= $id; ?>" />
 	</form>	
-			
-	<?php
-		include_once("includes/rodape.php");
-	
+</div>
+<?php
 	}
+	
+	$sqlc = "select co.*, c.nome
+	 		 from comentarios co
+	 		 inner join cliente c on c.id = co.cd_cliente
+	 		 where co.cd_produto = $produto
+			 order by id desc";
+			 //die("<pre>".$sqlc."</pre>");
+	$resc = mysqli_query($dbc, $sqlc);
+	
+	if (mysqli_num_rows($resc) > 0) {
+		echo '<br /><div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="table-responsive col-md-10">
+					<h4><strong>Avaliações do Produto</strong></h4><br />
+						<table class="table table-striped">';
+	}
+	
+	$i = 1;
+	
+	while ($regc = mysqli_fetch_array($resc)) {
+		$usuario = $regc['nome'];
+		$comentario = $regc['COMENTARIO'];
+		$estrelas = $regc['NOTA'];
+		
+		//die("usuário: ".$usuario." - Comentário: ".$comentario." - Estrelas: ".$estrelas);
+		
+		if ($estrelas == 1) {
+			$notac = '<div class="wrapper">
+							<input type="radio" id="st1" name="nota'.$i.'" value="5" />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="nota'.$i.'" value="4" />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="nota'.$i.'" value="3" />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="nota'.$i.'" value="2" />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="nota'.$i.'" value="1" checked />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 2) {
+			$notac = '<div class="wrapper">
+							<input type="radio" id="st1" name="nota'.$i.'" value="5" />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="nota'.$i.'" value="4" />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="nota'.$i.'" value="3" />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="nota'.$i.'" value="2" checked />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="nota'.$i.'" value="1" />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 3) {
+			$notac = '<div class="wrapper">
+							<input type="radio" id="st1" name="nota'.$i.'" value="5" />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="nota'.$i.'" value="4" />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="nota'.$i.'" value="3" checked />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="nota'.$i.'" value="2" />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="nota'.$i.'" value="1" />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 4) {
+			$notac = '<div class="wrapper">
+							<input type="radio" id="st1" name="nota'.$i.'" value="5" />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="nota'.$i.'" value="4" checked />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="nota'.$i.'" value="3" />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="nota'.$i.'" value="2" />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="nota'.$i.'" value="1" />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 5) {
+			$notac = '<div class="wrapper">
+							<input type="radio" id="st1" name="nota'.$i.'" value="5" checked />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="nota'.$i.'" value="4" />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="nota'.$i.'" value="3" />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="nota'.$i.'" value="2" />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="nota'.$i.'" value="1" />
+							<label for="st5"></label>
+						</div>';
+		}
+	
+		echo '<tr>
+				<td width="10%"><strong>'.$usuario.'</strong></td>
+				<td width="40%">'.$comentario.'</td>
+				<td width="10%">'.$notac.'</td>
+			  </tr>';	
+			  
+		$i++;
+	}
+	
+	if (mysqli_num_rows($resc) > 0) {
+		echo '</table></div></div>';
+	}
+?>
 
-		mysqli_free_result($rs);
-		mysqli_close($dbc);
+<!-- Fechar DIV ROW -->
+</div>
+
+
+<?php	
+	include_once("includes/rodape.php");
+
+	mysqli_free_result($rs);
+	mysqli_close($dbc);
 ?>
