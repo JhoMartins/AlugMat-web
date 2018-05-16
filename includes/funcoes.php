@@ -5,6 +5,26 @@
 	  $url .= '/' . $page;
 	  return $url;
   }
+  
+  function comentario ($comentario) {
+  //die("ENTROU");
+    $coment = "";
+		
+	for ($ini=0;$ini<=(strlen($comentario));$ini=$ini+78) {
+		$coment .= substr($comentario,$ini,78)."\r\n";
+	}
+	return $coment;
+  }
+  
+  function caracteristicas ($caracteristicas) {
+  //die("ENTROU");
+    $coment = "";
+		
+	for ($ini=0;$ini<=(strlen($caracteristicas));$ini=$ini+110) {
+		$coment .= substr($caracteristicas,$ini,110)."\r\n";
+	}
+	return $coment;
+  }
 
   function check_login($dbc, $nome = '', $senha = ''){
 	  $erros = array();

@@ -85,9 +85,9 @@
             <a href="menu_produto.php?ordem=marca">Marca</a></strong></th>
 		  <th width="10%"><strong>
             <a href="menu_produto.php?ordem=categoria">Categoria</a></strong></th>
-		  <th width="17%"><strong>
+		  <th width="16%"><strong>
             <a href="menu_produto.php?ordem=fornecedor">Fornecedor</a></strong></th>
-          <th width="8%"><strong>
+          <th width="9%"><strong>
             <a href="menu_produto.php?ordem=d">Valor Diária</a></strong></th>
           <th width="5%"><strong>
             <a href="menu_produto.php?ordem=disp">Disp.</a></strong></th>
@@ -117,7 +117,7 @@
 		  <td>' . $row['marca'] . '</td>
 		  <td>' . $cat . '</td>
 		  <td>' . $row['fornecedor'] . '</td>
-          <td>R$ ' . $row['valor_diaria'] . '</td>
+          <td>R$ ' . number_format($row['valor_diaria'],2,',','.') . '</td>
           <td>' . $row['disponivel'] . '</td>
           <td>' . $row['nota'] . '</td>
           <td class="actions">

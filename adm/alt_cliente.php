@@ -95,7 +95,10 @@
 		
 		//COMPLEMENTO
 		if (!empty($_POST['complemento'])) {
-			$complemento = (isset($_POST['complemento'])) ? mysqli_real_escape_string($dbc,trim($_POST['complemento'])) : NULL;
+			$complemento = mysqli_real_escape_string($dbc,trim($_POST['complemento']));
+		}
+		else {
+			$complemento = "";
 		}
 		
 		//BAIRRO
@@ -172,6 +175,17 @@
 			$status = mysqli_real_escape_string($dbc,trim($_POST['status']));
 		}
 		
+		//TIPO USUÁRIO
+		if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM' && empty($_POST['tipo_usuario'])) {
+			$erros[] = 'Por favor, informe o Tipo de Usuário';
+		}
+		else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM' && !empty($_POST['tipo_usuario'])) {
+			$tipo_usuario = $_POST['tipo_usuario'];
+		}
+		else {
+			$tipo_usuario = 'USU';
+		}
+		
 		
 		
 		//Se não há nenhum erro, inserir registro no banco de dados
@@ -194,7 +208,8 @@
 										email = '$email',
 										senha = '".SHA1('bd_alugmat'.$senha)."',
 										data_alt = NOW(),
-										status = '$status'
+										status = '$status',
+										tipo_usuario = '$tipo_usuario'
 					where id = $id";
 			$res = @mysqli_query($dbc,$qry);
 			
@@ -203,7 +218,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') {
+				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
@@ -380,6 +395,17 @@
 					<option value="N" <?php if ($row[20] == "N") echo "selected"; ?>>Inativo</option>
 			</select>
 			</div>
+			
+			<?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') { ?>
+				<div class="form-group col-md-2">
+						<label for="tipo_usuario">* Tipo de Usuário:</label>
+							<select class="form-control" id="tipo_usuario" name="tipo_usuario">
+								<option value="">Selecione</option>
+								<option value="ADM" <?php if ($row[21] == "ADM") echo "selected"; ?>>Administrador</option>
+								<option value="USU" <?php if ($row[21] == "USU") echo "selected"; ?>>Usuário</option>
+							</select>
+				</div>
+			<?php } ?>
 			
 			<div class="row">
 			</div>

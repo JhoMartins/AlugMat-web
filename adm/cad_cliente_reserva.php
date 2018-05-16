@@ -219,7 +219,7 @@
 										'$email',
 										'".SHA1('bd_alugmat'.$senha)."',
 										NOW(),
-										'$tipo_usuario',
+										'USU',
 										'$status')";
 										//die("<pre>".$qry."</pre>");
 			$res = @mysqli_query($dbc,$qry);
@@ -230,7 +230,7 @@
 							<p>Aguarde... Redirecionando!</p>";
 				
 				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
-					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../minhas_reservas.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_cliente.php'>";
@@ -269,6 +269,7 @@
 
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
+        </script>
 		
 		<script>
 		function tipopessoa(e) { 
@@ -300,7 +301,7 @@
 				 };
 		</script>
 		
-		<form action="cad_cliente.php" method="post">
+		<form action="cad_cliente_reserva.php" method="post">
 		  <div id="actions" class="row"> 
 		
 		<div class="form-group col-md-2" >
@@ -449,11 +450,10 @@
 							</select>
 				</div>
 			<?php } ?>
-			
-			
+
 			<div class="row">
 			</div>
-
+			
 			<hr />
 			
 			<div class="col-md-12">

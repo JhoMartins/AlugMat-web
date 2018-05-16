@@ -138,6 +138,7 @@
 	
 	//Pesquisa para exibir o registro para alteração
 	$qry = "select * from produto where id = $id";
+	//die($qry);
 	$res = @mysqli_query($dbc, $qry);
   
 	if (mysqli_num_rows($res) == 1) {

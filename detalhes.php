@@ -1,6 +1,7 @@
 <?php
 	$titulo = "Loja de Miniatura";
 	require_once('includes/cabecalho_site.php');
+	require_once('includes/funcoes.php');
 	
 	if ((isset($_GET['produto'])) && (is_numeric($_GET['produto']))) {
 		$produto = $_GET['produto'];
@@ -22,7 +23,7 @@
 		//COMENTÁRIO
 		if (trim($_POST['comentario']) != "") {
 			
-			$comentario = mysqli_real_escape_string($dbc,$_POST['comentario']);
+			$comentario = $_POST['comentario'];
 		}
 		else {
 			$erros[] = "Por favor, digite um comentário sobre o produto.";
@@ -37,6 +38,7 @@
 		}
 		
 		if (empty($erros)) {
+			
 			$qry = "insert into comentarios (
 										cd_cliente,
 										cd_produto,
@@ -50,12 +52,24 @@
 										//die($qry);
 			$res = @mysqli_query($dbc,$qry);
 			
+			$soma_notas = "select sum(nota) total_nota from comentarios where cd_produto = $produto";
+			$res_soma_notas = mysqli_query($dbc,$soma_notas);
+			$total_nota = mysqli_fetch_array($res_soma_notas);
+			
+			$conta_avaliacoes = "select count(*) total_avaliacoes from comentarios where cd_produto = $produto";
+			$res_conta_avaliacoes = mysqli_query($dbc,$conta_avaliacoes);
+			$total_avaliacoes = mysqli_fetch_array($res_conta_avaliacoes);
+			
+			$nota_media = $total_nota['total_nota'] / $total_avaliacoes['total_avaliacoes'];
+			
+			$upd = "update produto set nota = $nota_media where id = $produto";
+			$res_upd = mysqli_query($dbc,$upd);
+			
 			if ($res) {
 				$sucesso = "<h1><strong>Sucesso!</strong></h1>
-							<p>Seu registro foi incluido com sucesso!</p>
-							<p>Aguarde... Redirecionando!</p>";
+							<p>Seu comentário foi enviado com sucesso!</p>";
 				
-				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_principal.php'>";
+				echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=detalhes.php?produto=$produto'>";
 			}
 			else {
 				$erro = "<h1><strong>Erro no Sistema</strong></h1>
@@ -94,7 +108,8 @@
 		$valor_diaria = $reg["VALOR_DIARIA"];
 		$status = $reg["STATUS"];
 		$disponivel = $reg["DISPONIVEL"];
-		$caracteristicas = $reg["CARACTERISTICAS"];
+		$caracteristicas = caracteristicas($reg["CARACTERISTICAS"]);
+		$linhas = explode(chr(13), $caracteristicas);
 		$categoria = $reg["CATEGORIA"];
 		$marca = $reg["MARCA"];
 		$fornecedor = $reg["FORNECEDOR"];
@@ -128,22 +143,16 @@ function ampliar_imagem(url,nome_janela,parametros)
 <div class="row">
   <div class="col-md-2">
   <!-- Exibe imagem da miniatura com opção de ampliação -->
-  <a href="#"><img src="img/<?php echo $codigo; ?>G.jpg"
-	width="200" height="121" border="0" 
-	onclick="ampliar_imagem('ampliar.php?codigo=<?= $codigo; ?>&nome=<?= $nome; ?>','','width=522,height=338,top=50,left=50')" 
-	class="img-responsive" /></a>
-	<br />
-  <a href="#"><img src="img/btn_ampliar.gif"
-	width="200" height="121" border="0" 
-	onclick="ampliar_imagem('ampliar.php?codigo=<?= $codigo; ?>&nome=<?= $nome; ?>','','width=522,height=338,top=50,left=50')"
-	class="img-responsive" /></a>
- <h4>Dados técnicos</h4>
-	Código: <strong><?= $cd_interno; ?></strong><br />
-	Descrição: <strong><?= $descricao; ?></strong><br />
-	Marca: <strong><?= $marca; ?></strong><br />
-	Categoria: <strong><?= $categoria; ?></strong><br />
-	Fornecedor: <strong><?= $fornecedor; ?></strong><br />
-	Avaliação: <strong><?php if ($nota == 0) { echo "Não há avaliações para este produto."; } else if ($nota <= 1) { echo $nota . " estrela"; } else { echo $nota . " estrelas"; }?></strong><br />
+  <a href="#"><img src="img/<?php echo $produto; ?>G.jpg" width="200" height="121" border="0" onclick="ampliar_imagem('ampliar.php?codigo=<?= $produto; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" class="img-responsive" /></a><br />
+  <a href="#"><img src="img/btn_ampliar.gif" width="200" height="121" border="0" onclick="ampliar_imagem('ampliar.php?codigo=<?= $produto; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" class="img-responsive" /></a>
+
+  <h4>Dados técnicos</h4>
+	<strong>Código:</strong> <?= $cd_interno; ?><br />
+	<strong>Descrição:</strong> <?= $descricao; ?><br />
+	<strong>Marca:</strong> <?= $marca; ?><br />
+	<strong>Categoria:</strong> <?= $categoria; ?><br />
+	<strong>Fornecedor:</strong> <?= $fornecedor; ?><br />
+	<strong>Avaliação:</strong> <?php if ($nota == 0) { echo "Não há avaliações para este produto."; } else if ($nota <= 1) { echo number_format($nota,2,',','.') . " estrela"; } else { echo number_format($nota,2,',','.') . " estrelas"; }?><br />
 	
 	
 	
@@ -153,49 +162,172 @@ function ampliar_imagem(url,nome_janela,parametros)
 	  <div class="col-md-10">
 	    <h3><strong><?= $descricao; ?></strong></h3>
 		<h4>Valor da Diária: R$ <strong><?= number_format($valor_diaria,2,',','.'); ?></strong></h4>
-		Características: <strong><?= $caracteristicas; ?></strong><br /><br /> 
-			  <?php if ($status == "S") { ?>
-	    <a href="cesta.php?produto=<?= $codigo; ?>&inserir=S"
-		  class="btn btn-success" alt="Comprar" />Reservar</a>
+		<strong>Características:</strong><br /> <textarea  cols="122"  style="margin-bottom:10px; border: none; background-color: #eee; outline:none; resize: none;" rows="<?= sizeof($linhas); ?>" readonly><?= $caracteristicas; ?></textarea><br /><br /> 
+			  <?php if ($status == "S" && $disponivel == "S") { ?>
+	    <a href="cesta.php?produto=<?= $produto; ?>&inserir=S" class="btn btn-success" alt="Comprar" />Reservar</a>
 	  <?php } else { ?>
-	    <img src="img/btn_comprar_nd.gif" 
-		alt="Não disponível no estoque" hspace="5"
-		border="0" align="right" />
-
+	    <a href="#" class="btn btn-success" alt="Comprar" disabled />Reservar</a>
 	  <?php } ?>
 	</div>
 </div>
 </div>
-	<form class="form-group col-md-8" method="post" action="">
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<form class="form-group col-md-10" method="post" action="">
 		<div>
 			<h4>Deixe Seu Comentário</h4>
-			<textarea class="form-control counted" name="comentario" placeholder="Digite seu Comentario" rows="5" style="margin-bottom:10px;"></textarea>
+			<textarea class="form-control counted" name="comentario" style="resize: none;" <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo 'placeholder="Faça login para deixar seu comentário."'; } else { echo 'placeholder="Digite seu Comentário"'; } ?> rows="5" style="margin-bottom:10px;" <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?>><?php if (isset($comentario)) { echo $comentario; } ?></textarea>
 		</div>
 		
-		<div class="wrapper" >
-			<input type="radio" id="st1" name="nota" value="5" <?php if (isset($_POST['nota']) && $_POST['nota'] == 5) { echo 'checked'; }?> />
+		<div class="wrapper">
+			<input type="radio" id="st1" name="nota" value="5" <?php if (isset($_POST['nota']) && $_POST['nota'] == 5) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st1"></label>
-			<input type="radio" id="st2" name="nota" value="4" <?php if (isset($_POST['nota']) && $_POST['nota'] == 4) { echo 'checked'; }?> />
+			<input type="radio" id="st2" name="nota" value="4" <?php if (isset($_POST['nota']) && $_POST['nota'] == 4) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st2"></label>
-			<input type="radio" id="st3" name="nota" value="3" <?php if (isset($_POST['nota']) && $_POST['nota'] == 3) { echo 'checked'; }?> />
+			<input type="radio" id="st3" name="nota" value="3" <?php if (isset($_POST['nota']) && $_POST['nota'] == 3) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st3"></label>
-			<input type="radio" id="st4" name="nota" value="2" <?php if (isset($_POST['nota']) && $_POST['nota'] == 2) { echo 'checked'; }?> />
+			<input type="radio" id="st4" name="nota" value="2" <?php if (isset($_POST['nota']) && $_POST['nota'] == 2) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st4"></label>
-			<input type="radio" id="st5" name="nota" value="1" <?php if (isset($_POST['nota']) && $_POST['nota'] == 1) { echo 'checked'; }?> />
+			<input type="radio" id="st5" name="nota" value="1" <?php if (isset($_POST['nota']) && $_POST['nota'] == 1) { echo 'checked'; }?> <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?> />
 			<label for="st5"></label>
 		</div>
 		
 		<br />
-		<button type="submit" class="btn btn-primary">Enviar Comentário</button>
+		<button type="submit" class="btn btn-primary" <?php if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] == 'ADM') { echo "disabled"; } ?>>Enviar Comentário</button>
 		<input type="hidden" name="enviou" value="True" />
 		<input type="hidden" name="produto" value="<?= $id; ?>" />
 	</form>	
-			
-	<?php
-		include_once("includes/rodape.php");
-	
+</div>
+<?php
 	}
+	
+	$sqlc = "select co.*, c.nome
+	 		 from comentarios co
+	 		 inner join cliente c on c.id = co.cd_cliente
+	 		 where co.cd_produto = $produto
+			 order by id desc";
+			 //die("<pre>".$sqlc."</pre>");
+	$resc = mysqli_query($dbc, $sqlc);
+	
+	if (mysqli_num_rows($resc) > 0) {
+		echo '<br /><div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="table-responsive col-md-10">
+					<h4><strong>Avaliações do Produto</strong></h4><br />
+						<table class="table table-striped">';
+	}
+	
+	$i = 1;
+	
+	while ($regc = mysqli_fetch_array($resc)) {
+		$usuario = $regc['nome'];
+		$comentario = comentario($regc['COMENTARIO']);
+		$lc = explode(chr(13), $comentario);
+		$linhasc = sizeof($lc);
+		$estrelas = $regc['NOTA'];
+		
+		if ($i % 2 == 0) {
+			$cor = 'none';
+		}
+		else {
+			$cor = '#f9f9f9';
+		}
+		
+		if ($estrelas == 1) {
+			$notac = '<div class="wrapperd">
+							<input type="radio" id="st1" name="n'.$i.'" value="5" disabled />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="n'.$i.'" value="4" disabled />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="n'.$i.'" value="3" disabled />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="n'.$i.'" value="2" disabled />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="n'.$i.'" value="1" disabled checked />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 2) {
+			$notac = '<div class="wrapperd">
+							<input type="radio" id="st1" name="n'.$i.'" value="5" disabled />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="n'.$i.'" value="4" disabled />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="n'.$i.'" value="3" disabled />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="n'.$i.'" value="2" disabled checked />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="n'.$i.'" value="1" disabled />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 3) {
+			$notac = '<div class="wrapperd">
+							<input type="radio" id="st1" name="n'.$i.'" value="5" disabled />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="n'.$i.'" value="4" disabled />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="n'.$i.'" value="3" disabled checked />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="n'.$i.'" value="2" disabled />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="n'.$i.'" value="1" disabled />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 4) {
+			$notac = '<div class="wrapperd">
+							<input type="radio" id="st1" name="n'.$i.'" value="5" disabled />
+							<label for="st1"></label>
+							<input type="radio" id="st2" name="n'.$i.'" value="4" disabled checked />
+							<label for="st2"></label>
+							<input type="radio" id="st3" name="n'.$i.'" value="3" disabled />
+							<label for="st3"></label>
+							<input type="radio" id="st4" name="n'.$i.'" value="2" disabled />
+							<label for="st4"></label>
+							<input type="radio" id="st5" name="n'.$i.'" value="1" disabled />
+							<label for="st5"></label>
+						</div>';
+		}
+		else if ($estrelas == 5) {
+			$notac = '<div class="wrapperd">
+							<input type="radio" id="st1" name="n'.$i.'" value="5" disabled checked />
+							<label for="st1" disabled></label>
+							<input type="radio" id="st2" name="n'.$i.'" value="4" disabled />
+							<label for="st2" disabled></label>
+							<input type="radio" id="st3" name="n'.$i.'" value="3" disabled />
+							<label for="st3" disabled></label>
+							<input type="radio" id="st4" name="n'.$i.'" value="2" disabled />
+							<label for="st4" disabled></label>
+							<input type="radio" id="st5" name="n'.$i.'" value="1" disabled />
+							<label for="st5" disabled></label>
+						</div>';
+		}
+		
+		echo '<tr>
+				<td width="10%"><strong>'.$usuario.'</strong></td>
+				<td width="70%"><textarea  cols="85"  style="margin-bottom:10px; border: none; background-color: '.$cor.'; outline:none; resize: none;" rows="'.$linhasc.'" readonly>'.$comentario.'</textarea><br /><br /></td>
+				<td>'.$notac.'</td>
+			  </tr>';	
+			  
+		$i++;
+	}
+	
+	
+	if (mysqli_num_rows($resc) > 0) {
+		echo '</table></div></div>';
+	}
+?>
 
-		mysqli_free_result($rs);
-		mysqli_close($dbc);
+<!-- Fechar DIV ROW -->
+</div>
+
+
+<?php	
+	include_once("includes/rodape.php");
+
+	mysqli_free_result($rs);
+	mysqli_close($dbc);
 ?>

@@ -177,9 +177,18 @@
 			</select>
 			</div>
 
+			<?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') { ?>
+				<div class="form-group col-md-2">
+						<label for="tipo_usuario">* Tipo de Usuário:</label>
+							<select class="form-control" id="tipo_usuario" name="tipo_usuario">
+								<option value="">Selecione</option>
+								<option value="ADM" <?php if ($row[21] == "ADM") echo "selected"; ?>>Administrador</option>
+								<option value="USU" <?php if ($row[21] == "USU") echo "selected"; ?>>Usuário</option>
+							</select>
+				</div>
+			<?php } ?>
 			
 			<div class="row">
-
 			</div>
 			
 			<hr />
