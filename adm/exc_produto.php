@@ -54,23 +54,23 @@
 		  <div id="actions"> 
 			<div class="form group col-md-6">
 				<label>* Descrição</label>
-				<input type="text" name="descricao" maxlength="50" class="form-control" value="<?php echo $row[1]; ?>">
+				<input type="text" name="descricao" maxlength="50" class="form-control" value="<?php echo $row[1]; ?>" disabled>
 			</div>
 
 			<div class="form group col-md-4">
 				<label>* Código Interno</label>
-				<input type="text" name="cd_interno" maxlength="10" class="form-control" value="<?php echo $row[2]; ?>">
+				<input type="text" name="cd_interno" maxlength="10" class="form-control" value="<?php echo $row[2]; ?>" disabled>
 			</div>
 
 			<div class="form group col-md-2">
 				<label>* Valor da diária</label>
-				<input type="text" name="valor_diaria" maxlength="8" class="form-control" value="<?php echo $row[3]; ?>">
+				<input type="text" name="valor_diaria" maxlength="8" class="form-control" value="<?php echo $row[3]; ?>" disabled>
 			</div>
 
 			<div class="form group col-md-2">
 			<br />
 				<label for="">* Status</label>
-				<select class="form-control" name="status">
+				<select class="form-control" name="status" disabled>
 					<option value="">Selecione</option>
 					<option value="S" <?php if ($row[4] == "S") echo "selected"; ?>>Ativo</option>
 					<option value="N" <?php if ($row[4] == "N") echo "selected"; ?>>Inativo</option>
@@ -82,18 +82,18 @@
 			<div class="form-group col-md-2" >
 			<br />
 			<label for="sel1">* Marca:</label>
-			<select class="form-control" id="sel1" name="marca">
+			<select class="form-control" id="sel1" name="marca" disabled>
 				<option value="">Selecione</option>
-				<option value="Bosh" <?php if ($row[7] == "Bosh") echo "selected"; ?>>Bosh</option>
-				<option value="3M" <?php if ($row[7] == "3M") echo "selected"; ?>>3M</option>
-				<option value="Bracol" <?php if ($row[7] == "Bracol") echo "selected"; ?>>Bracol</option>
+				<option value="Bosh" <?php if ($row[7] == "Gedore") echo "selected"; ?>>Gedore</option>
+				<option value="3M" <?php if ($row[7] == "Belzer") echo "selected"; ?>>Belzer</option>
+				<option value="Bracol" <?php if ($row[7] == "Vonder") echo "selected"; ?>>Vonder</option>
 			</select>
 			</div>
 
 			<div class="form-group col-md-2" >
 			<br />
 				<label for="sel1">* Categoria:</label>
-				<select class="form-control" id="sel1" name="categoria">
+				<select class="form-control" id="sel1" name="categoria" disabled>
 					<option value="">Selecione</option>
 					<option value="pecas" <?php if ($row[8] == "pecas") echo "selected"; ?>>Peças</option>
 					<option value="maquinas" <?php if ($row[8] == "maquinas") echo "selected"; ?>>Máquinas</option>
@@ -104,7 +104,7 @@
 			<div class="form-group col-md-4" >
 			<br />
 				<label for="sel1">* Fornecedor:</label>
-				<select class="form-control" id="sel1" name="fornecedor">
+				<select class="form-control" id="sel1" name="fornecedor" disabled>
 					<option value="">Selecione</option>
 					<option value="fornecedor 1" <?php if ($row[9] == "fornecedor 1") echo "selected"; ?>>Fornecedor 1</option>
 					<option value="fornecedor 2" <?php if ($row[9] == "fornecedor 2") echo "selected"; ?>>Fornecedor 2</option>
@@ -115,7 +115,7 @@
 			<div class="form-group col-md-2" >
 				<br/>
 				<label for="sel1">Destaque:</label>
-				<select class="form-control" id="sel1" name="destaque">
+				<select class="form-control" id="sel1" name="destaque" disabled>
 					<option value="">Selecione</option>
 					<option value="S" <?php if ($row[14] == "S") echo "selected"; ?>>Sim</option>
 					<option value="N" <?php if ($row[14] == "N") echo "selected"; ?>>Não</option>
@@ -124,7 +124,7 @@
 
 				 <div class="form-group col-md-12">
     			<label for="exampleFormControlTextarea1">Caracteristicas</label>
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas"><?php echo $row[6]; ?></textarea>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas" style="resize: none;" disabled><?php echo $row[6]; ?></textarea>
   			 </div>
 			
 			<div class="col-md-12">

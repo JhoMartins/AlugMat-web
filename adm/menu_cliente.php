@@ -97,15 +97,15 @@
             <a href="menu_cliente.php?ordem=id">ID</a></strong></th>
           <th width="23%"><strong>
             <a href="menu_cliente.php?ordem=nome">Nome</a></strong></th>
-          <th width="5%"><strong>
+          <th width="13%"><strong>
             <a href="menu_cliente.php?ordem=cpf_cnpj">CPF/CNPJ</a></strong></th>
           <th width="5%"><strong>
             <a href="menu_cliente.php?ordem=rg_ie">RG/IE</a></strong></th>
-          <th width="14%"><strong>
+          <th width="10%"><strong>
             <a href="menu_cliente.php?ordem=cidade">Cidade</a></strong></th>
-		  <th width="7%"><strong>
+		  <th width="10%"><strong>
             <a href="menu_cliente.php?ordem=telefone">Telefone</a></strong></th>
-		  <th width="7%"><strong>
+		  <th width="10%"><strong>
             <a href="menu_cliente.php?ordem=celular">Celular</a></strong></th>
 		  <th width="5%"><strong>
             <a href="menu_cliente.php?ordem=status">Status</a></strong></th>

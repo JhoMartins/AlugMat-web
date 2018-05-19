@@ -31,11 +31,11 @@
 			}
 			else if ($_SESSION['total_itens'] == 1)
 			{
-				echo $_SESSION['total_itens'] . "produto";
+				echo $_SESSION['total_itens'] . " produto";
 			}
 			else
 			{
-				echo $_SESSION['total_itens'] . "produtos";
+				echo $_SESSION['total_itens'] . " produtos";
 			}
 		}
 

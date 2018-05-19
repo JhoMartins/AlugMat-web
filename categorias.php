@@ -3,22 +3,23 @@
 	require_once('includes/cabecalho_site.php');
 	require_once('includes/conexao.php');
 
+	//Número de registros exibidos na tela
 	$exiba = 10;
-	//$where = mysqli_real_escape_string($dbc, trim(isset($_GET['q'])) ? $_GET['q'] : '');
 	
 	//Recuperar as categorias
 	$categoria = $_GET['categoria'];
+	
+	$q = "select count(id) from produto where categoria = '$categoria' and status = 'S'";
+	//die($q);
+	$r = @mysqli_query($dbc,$q);
+	$row = @mysqli_fetch_array($r, MYSQLI_NUM);
+	$qtde = $row[0];
 
 	//Seleciona as miniaturas pelo id de categoria
-	if (is_numeric($_GET['p'])) {
+	if (isset($_GET['p']) && is_numeric($_GET['p'])) {
 		$pagina = $_GET['p'];
 	}
 	else {
-		$q = "select count(id) from produto where descricao like '%$where%'";
-		$r = @mysqli_query($dbc,$q);
-		$row = @mysqli_fetch_array($r, MYSQL_NUM);
-		$qtde = $row[0];
-		
 		if ($qtde > $exiba) {
 			$pagina = ceil($qtde/$exiba);
 		}
@@ -50,21 +51,41 @@
 	$qry = "select * from produto
 		  where categoria = '" . $categoria . "'
 			and status = 'S' 
-		  order by " . $ordenar;
+		  order by " . $ordenar . "
+		  limit $inicio, $exiba";
 	//die("<pre>".$qry."</pre>");
 	
 	$res = @mysqli_query($dbc,$qry);
-	$total_registros = mysqli_num_rows($res);
+	
 	
 	if ($pagina > 1) {
 		$pag = '';
 		$pagina_correta = ($inicio/$exiba) + 1;
 		
+		//Botão ANTERIOR
 		if ($pagina_correta != 1) {
-			$pag .= '<li class="prior"><a href="menu_cliente.php?s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordem . '">Anterior</a><li>';
+			$pag .= '<li class="prior"><a href="categorias.php?categoria=' . $categoria . '&s=' . ($inicio - $exiba) . '&p=' . $pagina . '&ordem=' . $ordenar . '">Anterior</a><li>';
 		}
 		else {
 			$pag .= '<li class="disabled"><a>Anterior</a></li>';
+		}
+		
+		//Numerações das PÁGINAS
+		for ($i = 1; $i <= $pagina; $i++) {
+			if ($i != $pagina_correta) {
+				$pag .= '<li><a href="categorias.php?categoria=' . $categoria . '&s=' . ($exiba * ($i - 1)) . '&p=' . $pagina . '&ordem=' . $ordenar . '">' . $i . '</a></li>';
+			}
+			else {
+				$pag .= '<li class="disabled"><a>' . $i . '</a></li>';
+			}
+		}
+		
+		//Botão PRÓXIMO
+		if ($pagina_correta != $pagina) {
+			$pag .= '<li class="next"><a href="categorias.php?categoria=' . $categoria . '&s=' . ($inicio + $exiba) . '&p=' . $pagina . '&ordem=' . $ordenar . '">Próximo</a></li>';
+		}
+		else {
+			$pag .= '<li class="disabled"><a>Próximo</a></li>';
 		}
 	}
 	
@@ -87,7 +108,7 @@
 <!--Título da página e Ordenação de registros -->
 <div class="row">
 	<div class="col-md-8">
-		<h4>Total de <?php if ($categoria == 'pecas') echo 'Peças: '; else if ($categoria == 'ferramentas') echo 'Ferramentas: '; else echo 'Máquinas: '; echo $total_registros; ?></h4>
+		<h4>Total de <?php if ($categoria == 'pecas') echo 'Peças: '; else if ($categoria == 'ferramentas') echo 'Ferramentas: '; else echo 'Máquinas: '; echo $qtde; ?></h4>
 	</div>
 	<div class="col-md-4">
 		<span class="h4 pull-right"> 
@@ -105,10 +126,9 @@
 
 <!-- Exibição dos Itens -->
 <?php
-	for ($contador = 0; $contador < $total_registros; $contador++)
-	{
-		$reg = @mysqli_fetch_array($res, MYSQLI_ASSOC);
-		
+	$contador = 0;
+	
+	while ($reg = mysqli_fetch_array($res,MYSQLI_ASSOC)) {		
 		$id = $reg["ID"];
 		$descricao = $reg["DESCRICAO"];
 		$cd_interno = $reg["CD_INTERNO"];
@@ -129,10 +149,10 @@
 		<!--Monta a coluna da esquerda -->
 		<div class="col-md-6">
 			<div class="col-md-4">
-				<a href="#"><img src="imagens/<?php echo $id; ?>.jpg"
+				<a href="#"><img src="img/<?= $id; ?>.jpg"
 					width="140" height="85" border="0" />
 				</a> <br />
-				<img src="imagens/btn_ampliar1.gif"
+				<img src="img/btn_ampliar1.gif"
 					width="140" height="16" border="0" />
 			</div>
 		<div class="col-md-8">
@@ -140,12 +160,13 @@
 			Valor da Diária: <strong>R$ <?php echo number_format($valor_diaria,2,',','.'); ?></strong>
 			<h6>Código: <?php echo $cd_interno; ?> </h6>
 			<a href="detalhes.php?produto=<?= $id; ?>" class="btn btn-xs btn-success">Mais Detalhes</a>
-			<?php if($disponivel = 'S') {?>
-			<img src="imagens/btn_detalhes_nd.gif" vspace="5" border="0"> <?php } ?> <br /><br />
+			<?php if($disponivel == 'N') {?>
+			<img src="img/btn_detalhes_nd.gif" vspace="5" border="0"> <?php } ?> <br /><br />
 		</div>
 		</div>
 		<?php
 		//Exibe dados da coluna da direita
+			$contador++;
 		}
 		else
 		{
@@ -153,10 +174,10 @@
 			<!--Monta a coluna da Direita -->
 		<div class="col-md-6">
 			<div class="col-md-4">
-				<a href="#"><img src="imagens/<?= $id; ?>.jpg"
+				<a href="#"><img src="img/<?= $id; ?>.jpg"
 					width="140" height="85" border="0" />
 				</a> <br />
-				<img src="imagens/btn_ampliar1.gif"
+				<img src="img/btn_ampliar1.gif"
 					width="140" height="16" border="0" />
 			</div>
 		<div class="col-md-8">
@@ -164,15 +185,26 @@
 			Valor da Diária: <strong>R$ <?php echo number_format($valor_diaria,2,',','.'); ?></strong>
 			<h6>Código: <?php echo $cd_interno; ?> </h6>
 			<a href="detalhes.php?produto=<?= $id; ?>" class="btn btn-xs btn-success">Mais Detalhes</a>
-			<?php if($disponivel = 'S') {?>
-			<img src="imagens/btn_detalhes_nd.gif" vspace="5" border="0"> <?php } ?> <br /><br />
+			<?php if($disponivel == 'N') {?>
+			<img src="img/btn_detalhes_nd.gif" vspace="5" border="0"> <?php } ?> <br /><br />
 		</div>
 		</div>
 	<!--Finaliza a Linha -->
 	</div>
 	<?php
+			$contador++;
 		} //Encerra o else
 	} //Encerra o for
+	?>
+	
+	<div id="botton" class="row col-md-12">
+	  <ul class="pagination">
+		<?php if (isset($pag)) {echo $pag;} ?>
+	  </ul>
+	</div>
+
+<?php
+	include_once('includes/rodape.php');
 	mysqli_free_result($res);
 	mysqli_close($dbc);
-	?>
+?>
