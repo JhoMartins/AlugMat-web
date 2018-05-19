@@ -138,6 +138,7 @@
 	
 	//Pesquisa para exibir o registro para alteração
 	$qry = "select * from produto where id = $id";
+	//die($qry);
 	$res = @mysqli_query($dbc, $qry);
   
 	if (mysqli_num_rows($res) == 1) {
@@ -185,9 +186,9 @@
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca">
 				<option value="">Selecione</option>
-				<option value="Bosh" <?php if ($row[7] == "Bosh") echo "selected"; ?>>Bosh</option>
-				<option value="3M" <?php if ($row[7] == "3M") echo "selected"; ?>>3M</option>
-				<option value="Bracol" <?php if ($row[7] == "Bracol") echo "selected"; ?>>Bracol</option>
+				<option value="Bosh" <?php if ($row[7] == "Gedore") echo "selected"; ?>>Gedore</option>
+				<option value="3M" <?php if ($row[7] == "Belzer") echo "selected"; ?>>Belzer</option>
+				<option value="Bracol" <?php if ($row[7] == "Vonder") echo "selected"; ?>>Vonder</option>
 			</select>
 			</div>
 
@@ -225,7 +226,7 @@
 
 				 <div class="form-group col-md-12">
     			<label for="exampleFormControlTextarea1">Caracteristicas</label>
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas"><?php echo $row[6]; ?></textarea>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas" style="resize: none;"><?php echo $row[6]; ?></textarea>
   			 </div>
 			
 			<div class="col-md-12">
