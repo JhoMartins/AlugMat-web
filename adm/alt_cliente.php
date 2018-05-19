@@ -39,7 +39,7 @@
 			$erros[] = 'Por favor, informe o CPF.';
 		}
 		else {
-			$cpf = mysqli_real_escape_string($dbc,trim($_POST['cpf']));
+			$cpf = (!empty($_POST['cpf'])) ? mysqli_real_escape_string($dbc,trim($_POST['cpf'])) : NULL;
 		}
 		
 		//RG
@@ -47,7 +47,7 @@
 			$erros[] = 'Por favor, informe o RG.';
 		}
 		else {
-			$rg = mysqli_real_escape_string($dbc,trim($_POST['rg']));
+			$rg = (!empty($_POST['rg'])) ? mysqli_real_escape_string($dbc,trim($_POST['rg'])) : NULL;
 		}
 		
 		//CNPJ
@@ -55,7 +55,7 @@
 			$erros[] = 'Por favor, informe o CNPJ.';
 		}
 		else {
-			$cnpj = mysqli_real_escape_string($dbc,trim($_POST['cnpj']));
+			$cnpj = (!empty($_POST['cnpj'])) ? mysqli_real_escape_string($dbc,trim($_POST['cnpj'])) : NULL;
 		}
 		
 		//IE
@@ -63,7 +63,7 @@
 			$erros[] = 'Por favor, informe a IE.';
 		}
 		else {
-			$ie = mysqli_real_escape_string($dbc,trim($_POST['ie']));
+			$ie = (!empty($_POST['ie'])) ? mysqli_real_escape_string($dbc,trim($_POST['ie'])) : NULL;
 		}
 		
 		//TIPO DE LOGRADOURO
@@ -95,7 +95,10 @@
 		
 		//COMPLEMENTO
 		if (!empty($_POST['complemento'])) {
-			$complemento = (isset($_POST['complemento'])) ? mysqli_real_escape_string($dbc,trim($_POST['complemento'])) : NULL;
+			$complemento = mysqli_real_escape_string($dbc,trim($_POST['complemento']));
+		}
+		else {
+			$complemento = "";
 		}
 		
 		//BAIRRO
@@ -172,6 +175,17 @@
 			$status = mysqli_real_escape_string($dbc,trim($_POST['status']));
 		}
 		
+		//TIPO USUÁRIO
+		if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM' && empty($_POST['tipo_usuario'])) {
+			$erros[] = 'Por favor, informe o Tipo de Usuário';
+		}
+		else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM' && !empty($_POST['tipo_usuario'])) {
+			$tipo_usuario = $_POST['tipo_usuario'];
+		}
+		else {
+			$tipo_usuario = 'USU';
+		}
+		
 		
 		
 		//Se não há nenhum erro, inserir registro no banco de dados
@@ -194,7 +208,8 @@
 										email = '$email',
 										senha = '".SHA1('bd_alugmat'.$senha)."',
 										data_alt = NOW(),
-										status = '$status'
+										status = '$status',
+										tipo_usuario = '$tipo_usuario'
 					where id = $id";
 			$res = @mysqli_query($dbc,$qry);
 			
@@ -203,7 +218,7 @@
 							<p>Seu registro foi incluido com sucesso!</p>
 							<p>Aguarde... Redirecionando!</p>";
 				
-				if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') {
+				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
@@ -246,11 +261,47 @@
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Alteração de Usuário</h3>
 		
+		<script>
+		window.onload = function() {
+			tipopessoa(tipo_pessoa);
+		}
+		
+		function tipopessoa(e) { 
+					if(e.value == "F") {
+						document.getElementById("cpf").disabled = false;
+						document.getElementById("rg").disabled = false;
+						document.getElementById("cnpj").disabled = true;
+						document.getElementById("ie").disabled = true;
+						document.getElementById("cnpj").value = "";
+						document.getElementById("ie").value = "";
+					} if(e.value == "J") {
+						document.getElementById("cnpj").disabled = false;
+						document.getElementById("ie").disabled = false;
+						document.getElementById("cpf").disabled = true;
+						document.getElementById("rg").disabled = true;
+						document.getElementById("cpf").value = "";
+						document.getElementById("rg").value = "";
+					}
+					if (e.value == "") {
+						document.getElementById("cnpj").disabled = true;
+						document.getElementById("ie").disabled = true;
+						document.getElementById("cpf").disabled = true;
+						document.getElementById("rg").disabled = true;
+						document.getElementById("cnpj").value = "";
+						document.getElementById("ie").value = "";
+						document.getElementById("cpf").value = "";
+						document.getElementById("rg").value = "";
+					}
+				 };
+				 
+		$(document).ready(tipopessoa(tipo_pessoa));
+		</script>
+		
 		<form action="alt_cliente.php" method="post">
 		  <div id="actions" class="row"> 
 			<div class="form-group col-md-2" >
 				<label for="">Tipo de Pessoa</label>
-				<select name="tipo_pessoa" class="form-control">
+				<select name="tipo_pessoa" id="tipo_pessoa" class="form-control" onchange="tipopessoa(tipo_pessoa)">
 					<option value="">Selecione</option>
 					<option value="F" <?php if ($row[1] == "F") echo "selected"; ?>>Pessoa Física</option>
 					<option value="J" <?php if ($row[1] == "J") echo "selected"; ?>>Pessoa Juridica</option>
@@ -380,6 +431,17 @@
 					<option value="N" <?php if ($row[20] == "N") echo "selected"; ?>>Inativo</option>
 			</select>
 			</div>
+			
+			<?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') { ?>
+				<div class="form-group col-md-2">
+						<label for="tipo_usuario">* Tipo de Usuário:</label>
+							<select class="form-control" id="tipo_usuario" name="tipo_usuario">
+								<option value="">Selecione</option>
+								<option value="ADM" <?php if ($row[21] == "ADM") echo "selected"; ?>>Administrador</option>
+								<option value="USU" <?php if ($row[21] == "USU") echo "selected"; ?>>Usuário</option>
+							</select>
+				</div>
+			<?php } ?>
 			
 			<div class="row">
 			</div>

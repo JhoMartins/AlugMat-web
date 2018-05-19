@@ -184,9 +184,9 @@
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca">
 				<option value="">Selecione</option>
-				<option value="Bosh" <?php if (isset($_POST['marca']) && $_POST['marca'] == "Bosh") echo "selected"; ?>>Bosh</option>
-				<option value="3M" <?php if (isset($_POST['marca']) && $_POST['marca'] == "3M") echo "selected"; ?>>3M</option>
-				<option value="Bracol" <?php if (isset($_POST['marca']) && $_POST['marca'] == "Bracol") echo "selected"; ?>>Bracol</option>
+				<option value="Bosh" <?php if (isset($_POST['marca']) && $_POST['marca'] == "Gedore") echo "selected"; ?>>Gedore</option>
+				<option value="3M" <?php if (isset($_POST['marca']) && $_POST['marca'] == "Belzer") echo "selected"; ?>>Belzer</option>
+				<option value="Bracol" <?php if (isset($_POST['marca']) && $_POST['marca'] == "Vonder") echo "selected"; ?>>Vonder</option>
 			</select>
 			</div>
 
@@ -224,7 +224,7 @@
 
 				 <div class="form-group col-md-12">
     				<label for="exampleFormControlTextarea1">Caracteristicas</label>
-    				<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas"><?php if (isset($_POST['caracteristicas'])) echo $_POST['caracteristicas'];?></textarea>
+    				<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="caracteristicas" style="resize: none;"><?php if (isset($_POST['caracteristicas'])) echo $_POST['caracteristicas'];?></textarea>
     				<hr />
   			 	</div>
 

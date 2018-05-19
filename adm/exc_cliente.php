@@ -56,7 +56,7 @@
 		  <div id="actions" class="row"> 
 			<div class="form-group col-md-2" >
 				<label for="">Tipo de Pessoa</label>
-				<select name="tipo_pessoa" class="form-control">
+				<select name="tipo_pessoa" class="form-control" disabled>
 					<option value="">Selecione</option>
 					<option value="F" <?php if ($row[1] == "F") echo "selected"; ?>>Pessoa Física</option>
 					<option value="J" <?php if ($row[1] == "J") echo "selected"; ?>>Pessoa Juridica</option>
@@ -65,62 +65,62 @@
 					
 			<div class="form-group col-md-4">
 				<label for="nome"> * Nome</label>
-				<input type="text" class="form-control" name="nome" id="nome" placeholder="" maxlength="50" value="<?php echo $row[2]; ?>">
+				<input type="text" class="form-control" name="nome" id="nome" placeholder="" maxlength="50" value="<?php echo $row[2]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="cpf"> * CPF</label>
-				<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php echo $row[3]; ?>" <?php //if (tipo_pessoa != "F") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php echo $row[3]; ?>" <?php //if (tipo_pessoa != "F") echo "disabled"; ?> disabled>
 			</div>
 			
 			<div class="form-group col-md-2">
 				<label for="rg"> * RG</label>
-				<input type="text" class="form-control" id="rg" name="rg" placeholder="" maxlength="12" value="<?php echo $row[4]; ?>" <?php //if (tipo_pessoa != "F") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="rg" name="rg" placeholder="" maxlength="12" value="<?php echo $row[4]; ?>" <?php //if (tipo_pessoa != "F") echo "disabled"; ?> disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="cnpj"> * CNPJ</label>
-				<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex.: 00.000.000/0000-00" maxlength="18" value="<?php echo $row[5]; ?>" <?php //if (tipo_pessoa != "J") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex.: 00.000.000/0000-00" maxlength="18" value="<?php echo $row[5]; ?>" <?php //if (tipo_pessoa != "J") echo "disabled"; ?> disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="ie"> * IE </label>
-				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php echo $row[6]; ?>" <?php //if (tipo_pessoa != "J") echo "disabled"; ?>>
+				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php echo $row[6]; ?>" <?php //if (tipo_pessoa != "J") echo "disabled"; ?> disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="longadouro"> * Tipo de Logradouro </label>
-				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php echo $row[7]; ?>">
+				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php echo $row[7]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-4">
 				<label for="nome_longadouro"> * Nome do Logradouro </label>
-				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php echo $row[8]; ?>">
+				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php echo $row[8]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-1">
 				<label for="numero"> * Núm. </label>
-				<input type="text" class="form-control" id="num" name="num" placeholder="" maxlength="5" value="<?php echo $row[9]; ?>">
+				<input type="text" class="form-control" id="num" name="num" placeholder="" maxlength="5" value="<?php echo $row[9]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-3">
 				<label for="complemento"> Complemento </label>
-				<input type="text" class="form-control" id="complemento" name="complemento" placeholder="" maxlength="20" value="<?php echo $row[10]; ?>">
+				<input type="text" class="form-control" id="complemento" name="complemento" placeholder="" maxlength="20" value="<?php echo $row[10]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-3">
 				<label for="bairro"> * Bairro </label>
-				<input type="text" class="form-control" id="bairro" name="bairro" placeholder="" maxlength="30" value="<?php echo $row[11]; ?>">
+				<input type="text" class="form-control" id="bairro" name="bairro" placeholder="" maxlength="30" value="<?php echo $row[11]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-3">
 				<label for="cidade"> * Cidade  </label>
-				<input type="text" class="form-control" id="cidade" name="cidade" placeholder="" maxlength="40" value="<?php echo $row[12]; ?>">
+				<input type="text" class="form-control" id="cidade" name="cidade" placeholder="" maxlength="40" value="<?php echo $row[12]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2" >
 				<label for="estado">* Estado:</label>
-				<select class="form-control" id="estado" name="estado">
+				<select class="form-control" id="estado" name="estado" disabled>
 					<option value="">Selecione</option>
 					<option value="AC" <?php if ($row[13] == "AC") echo "selected"; ?>>AC</option>
 					<option value="AL" <?php if ($row[13] == "AL") echo "selected"; ?>>AL</option>
@@ -155,31 +155,44 @@
 
 			<div class="form-group col-md-2">
 				<label for="telefone"> * Telefone </label>
-				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00)0000-0000" maxlength="13" value="<?php echo $row[14]; ?>">
+				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00)0000-0000" maxlength="13" value="<?php echo $row[14]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-2">
 				<label for="email"> * Celular </label>
-				<input type="text" class="form-control" id="email" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php echo $row[15]; ?>">
+				<input type="text" class="form-control" id="email" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php echo $row[15]; ?>" disabled>
 			</div>
 
 			<div class="form-group col-md-4">
 				<label for="email"> * E-mail </label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu endereço de e-mail" maxlength="80" value="<?php echo $row[16]; ?>">
+				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu endereço de e-mail" maxlength="80" value="<?php echo $row[16]; ?>" disabled>
 			</div>
 			
 			<div class="form-group col-md-2" >
 				<label for="estado">* Status:</label>
-				<select class="form-control" id="status" name="status">
+				<select class="form-control" id="status" name="status" disabled>
 					<option value="">Selecione</option>
 					<option value="S" <?php if ($row[20] == "S") echo "selected"; ?>>Ativo</option>
 					<option value="N" <?php if ($row[20] == "N") echo "selected"; ?>>Inativo</option>
 			</select>
 			</div>
 
+			<?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') { ?>
+				<div class="form-group col-md-2">
+						<label for="tipo_usuario">* Tipo de Usuário:</label>
+<<<<<<< HEAD
+							<select class="form-control" id="tipo_usuario" name="tipo_usuario" disabled>
+=======
+							<select class="form-control" id="tipo_usuario" name="tipo_usuario">
+>>>>>>> da06abf8a01e089e5ef449d2c1d100a148a0fc92
+								<option value="">Selecione</option>
+								<option value="ADM" <?php if ($row[21] == "ADM") echo "selected"; ?>>Administrador</option>
+								<option value="USU" <?php if ($row[21] == "USU") echo "selected"; ?>>Usuário</option>
+							</select>
+				</div>
+			<?php } ?>
 			
 			<div class="row">
-
 			</div>
 			
 			<hr />

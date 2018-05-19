@@ -219,7 +219,7 @@
 										'$email',
 										'".SHA1('bd_alugmat'.$senha)."',
 										NOW(),
-										'$tipo_usuario',
+										'USU',
 										'$status')";
 										//die("<pre>".$qry."</pre>");
 			$res = @mysqli_query($dbc,$qry);
@@ -230,7 +230,7 @@
 							<p>Aguarde... Redirecionando!</p>";
 				
 				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
-					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../minhas_reservas.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_cliente.php'>";
@@ -265,16 +265,20 @@
    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
    <script src="../js/masks.js"></script>
-   
+
 
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
+        </script>
 		
 		<script>
+<<<<<<< HEAD
 		window.onload = function() {
 			tipopessoa(tipo_pessoa);
 		}
 		
+=======
+>>>>>>> da06abf8a01e089e5ef449d2c1d100a148a0fc92
 		function tipopessoa(e) { 
 					if(e.value == "F") {
 						document.getElementById("cpf").disabled = false;
@@ -302,11 +306,9 @@
 						document.getElementById("rg").value = "";
 					}
 				 };
-				 
-		$(document).ready(tipopessoa(tipo_pessoa));
 		</script>
 		
-		<form action="cad_cliente.php" method="post">
+		<form action="cad_cliente_reserva.php" method="post">
 		  <div id="actions" class="row"> 
 		
 		<div class="form-group col-md-2" >
@@ -455,11 +457,10 @@
 							</select>
 				</div>
 			<?php } ?>
-			
-			
+
 			<div class="row">
 			</div>
-
+			
 			<hr />
 			
 			<div class="col-md-12">
