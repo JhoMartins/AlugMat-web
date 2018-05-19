@@ -24,36 +24,29 @@
 			$nome = mysqli_real_escape_string($dbc,trim($_POST['nome']));
 		}
 		
-		//CPF
-		if ($_POST['tipo_pessoa'] == 'F' && empty($_POST['cpf'])) {
-			$erros[] = 'Por favor, informe o CPF.';
+		//CPF_CNPJ
+		if (empty($_POST['cpf_cnpj'])) {
+			$erros[] = 'Por favor, informe o CPF/CNPJ.';
 		}
 		else {
-			$cpf = (!empty($_POST['cpf'])) ? mysqli_real_escape_string($dbc,trim($_POST['cpf'])) : NULL;
+			$cpf_cnpj = (!empty($_POST['cpf_cnpj'])) ? mysqli_real_escape_string($dbc,trim($_POST['cpf_cnpj'])) : NULL;
+			
+			if (strlen($cpf_cnpj) > 14) {
+				$cpf = null;
+				$cnpj = $cpf_cnpj;
+			}
+			else {
+				$cpf = $cpf_cnpj;
+				$cnpj = null;
+			}
 		}
 		
-		//RG
-		if ($_POST['tipo_pessoa'] == 'F' && empty($_POST['rg'])) {
+		//RG_IE
+		if ($_POST['tipo_pessoa'] == 'F' && empty($_POST['rg_ie'])) {
 			$erros[] = 'Por favor, informe o RG.';
 		}
 		else {
-			$rg = (!empty($_POST['rg'])) ? mysqli_real_escape_string($dbc,trim($_POST['rg'])) : NULL;
-		}
-		
-		//CNPJ
-		if ($_POST['tipo_pessoa'] == 'J' && empty($_POST['cnpj'])) {
-			$erros[] = 'Por favor, informe o CNPJ.';
-		}
-		else {
-			$cnpj = (!empty($_POST['cnpj'])) ? mysqli_real_escape_string($dbc,trim($_POST['cnpj'])) : NULL;
-		}
-		
-		//IE
-		if ($_POST['tipo_pessoa'] == 'J' && empty($_POST['ie'])) {
-			$erros[] = 'Por favor, informe a IE.';
-		}
-		else {
-			$ie = (!empty($_POST['ie'])) ? mysqli_real_escape_string($dbc,trim($_POST['ie'])) : NULL;
+			$rg_ie = (!empty($_POST['rg_ie'])) ? mysqli_real_escape_string($dbc,trim($_POST['rg_ie'])) : NULL;
 		}
 		
 		//TIPO DE LOGRADOURO
@@ -219,7 +212,7 @@
 										'$email',
 										'".SHA1('bd_alugmat'.$senha)."',
 										NOW(),
-										'USU',
+										'$tipo_usuario',
 										'$status')";
 										//die("<pre>".$qry."</pre>");
 			$res = @mysqli_query($dbc,$qry);
@@ -230,7 +223,7 @@
 							<p>Aguarde... Redirecionando!</p>";
 				
 				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
-					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../minhas_reservas.php'>";
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../index.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_cliente.php'>";
@@ -269,49 +262,33 @@
 
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
-        </script>
 		
 		<script>
-<<<<<<< HEAD
-		window.onload = function() {
-			tipopessoa(tipo_pessoa);
-		}
-		
-=======
->>>>>>> da06abf8a01e089e5ef449d2c1d100a148a0fc92
 		function tipopessoa(e) { 
 					if(e.value == "F") {
-						document.getElementById("cpf").disabled = false;
-						document.getElementById("rg").disabled = false;
-						document.getElementById("cnpj").disabled = true;
-						document.getElementById("ie").disabled = true;
-						document.getElementById("cnpj").value = "";
-						document.getElementById("ie").value = "";
+						document.getElementById("cpf_cnpj").disabled = false;
+						document.getElementById("rg_ie").disabled = false;
+						document.getElementById("cpf_cnpj").value = "";
+						document.getElementById("rg_ie").value = "";
 					} if(e.value == "J") {
-						document.getElementById("cnpj").disabled = false;
-						document.getElementById("ie").disabled = false;
-						document.getElementById("cpf").disabled = true;
-						document.getElementById("rg").disabled = true;
-						document.getElementById("cpf").value = "";
-						document.getElementById("rg").value = "";
+						document.getElementById("cpf_cnpj").disabled = false;
+						document.getElementById("rg_ie").disabled = false;
+						document.getElementById("cpf_cnpj").value = "";
+						document.getElementById("rg_ie").value = "";
 					}
 					if (e.value == "") {
-						document.getElementById("cnpj").disabled = true;
-						document.getElementById("ie").disabled = true;
-						document.getElementById("cpf").disabled = true;
-						document.getElementById("rg").disabled = true;
-						document.getElementById("cnpj").value = "";
-						document.getElementById("ie").value = "";
-						document.getElementById("cpf").value = "";
-						document.getElementById("rg").value = "";
+						document.getElementById("cpf_cnpj").disabled = true;
+						document.getElementById("rg_ie").disabled = true;
+						document.getElementById("cpf_cnpj").value = "";
+						document.getElementById("rg_ie").value = "";
 					}
 				 };
 		</script>
 		
-		<form action="cad_cliente_reserva.php" method="post">
+		<form action="cad_cliente.php" method="post">
 		  <div id="actions" class="row"> 
 		
-		<div class="form-group col-md-2" >
+		<div class="form-group col-md-3" >
 			
 			<label for="">* Tipo de Pessoa</label>
 			<select id="tipo_pessoa" name="tipo_pessoa" class="form-control" onchange="tipopessoa(tipo_pessoa)">
@@ -321,29 +298,29 @@
 			</select>
 		</div>		
 				
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-9">
 				<label for="nome"> * Nome</label>
 				<input type="text" class="form-control" name="nome" id="nome" placeholder="" maxlength="50" value="<?php if (isset($_POST['nome'])) echo $_POST['nome']; ?>">
 			</div>
 
-			<div class="form-group col-md-2">
-				<label for="cpf"> * CPF</label>
-				<input type="text" class="form-control cpf" id="cpf" name="cpf" placeholder="Ex.: 000.000.000-00" maxlength="14" value="<?php if (isset($_POST['cpf'])) echo $_POST['cpf']; ?>" disabled>
+			<div class="form-group col-md-3">
+				<label for="cpf"> * CPF/CNPJ</label>
+				<input type="text" class="form-control cpf" id="cpf_cnpj" name="cpf_cnpj" placeholder="Selecione o Tipo de Pessoa" value="<?php if (isset($_POST['cpf_cnpj'])) echo $_POST['cpf_cnpj']; if (isset($_POST['cpf_cnpj'])) echo $_POST['cpf_cnpj']; ?>" disabled>
 			</div>
 			
-			<div class="form-group col-md-2">
-				<label for="rg"> * RG</label>
-				<input type="text" class="form-control" id="rg" name="rg" placeholder="" maxlength="12" value="<?php if (isset($_POST['rg'])) echo $_POST['rg']; ?>" disabled>
+			<div class="form-group col-md-3">
+				<label for="rg"> * RG/IE</label>
+				<input type="text" class="form-control" id="rg_ie" name="rg_ie" placeholder="Selecione o Tipo de Pessoa" value="<?php if (isset($_POST['rg_ie'])) echo $_POST['rg_ie']; if (isset($_POST['rg_ie'])) echo $_POST['rg_ie']; ?>" disabled>
+			</div>
+			
+			<div class="form-group col-md-3">
+				<label for="telefone"> * Telefone </label>
+				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00) 0000-0000" maxlength="14" value="<?php if (isset($_POST['telefone'])) echo $_POST['telefone']; ?>">
 			</div>
 
-			<div class="form-group col-md-2">
-				<label for="cnpj"> * CNPJ</label>
-				<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex.: 00.000.000/0000-00" maxlength="18" value="<?php if (isset($_POST['cnpj'])) echo $_POST['cnpj']; ?>" disabled>
-			</div>
-
-			<div class="form-group col-md-2">
-				<label for="ie"> * IE </label>
-				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php if (isset($_POST['ie'])) echo $_POST['ie']; ?>" disabled>
+			<div class="form-group col-md-3">
+				<label for="email"> * Celular </label>
+				<input type="text" class="form-control" id="celular" name="celular" placeholder="Ex.: (00) 00000-0000" maxlength="15" value="<?php if (isset($_POST['celular'])) echo $_POST['celular']; ?>">
 			</div>
 
 			<div class="form-group col-md-2">
@@ -351,7 +328,7 @@
 				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php if (isset($_POST['logradouro'])) echo $_POST['logradouro']; ?>">
 			</div>
 
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-6">
 				<label for="nome_longadouro"> * Nome do Logradouro </label>
 				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php if (isset($_POST['nome_logradouro'])) echo $_POST['nome_logradouro']; ?>">
 			</div>
@@ -366,61 +343,50 @@
 				<input type="text" class="form-control" id="complemento" name="complemento" placeholder="" maxlength="20" value="<?php if (isset($_POST['complemento'])) echo $_POST['complemento']; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-4">
 				<label for="bairro"> * Bairro </label>
 				<input type="text" class="form-control" id="bairro" name="bairro" placeholder="" maxlength="30" value="<?php if (isset($_POST['bairro'])) echo $_POST['bairro']; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-5">
 				<label for="cidade"> * Cidade  </label>
 				<input type="text" class="form-control" id="cidade" name="cidade" placeholder="" maxlength="40" value="<?php if (isset($_POST['cidade'])) echo $_POST['cidade']; ?>">
 			</div>
 
-			<div class="form-group col-md-2" >
+			<div class="form-group col-md-3" >
 				<label for="estado">* Estado:</label>
 				<select class="form-control" id="estado" name="estado">
 					<option value="">Selecione</option>
-					<option value="AC"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AC") echo "selected"; ?>>AC</option>
-					<option value="AL"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AL") echo "selected"; ?>>AL</option>
-					<option value="AP"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AP") echo "selected"; ?>>AP</option>
-					<option value="AM"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AM") echo "selected"; ?>>AM</option>
-					<option value="BA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "BA") echo "selected"; ?>>BA</option>
-					<option value="CE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "CE") echo "selected"; ?>>CE</option>
-					<option value="DF"<?php if (isset($_POST['estado']) && $_POST['estado'] == "DF") echo "selected"; ?>>DF</option>
-					<option value="ES"<?php if (isset($_POST['estado']) && $_POST['estado'] == "ES") echo "selected"; ?>>ES</option>
-					<option value="GO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "GO") echo "selected"; ?>>GO</option>
-					<option value="MA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MA") echo "selected"; ?>>MA</option>
-					<option value="MT"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MT") echo "selected"; ?>>MT</option>
-					<option value="MS"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MS") echo "selected"; ?>>MS</option>
-					<option value="MG"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MG") echo "selected"; ?>>MG</option>
-					<option value="PA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PA") echo "selected"; ?>>PA</option>
-					<option value="PB"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PB") echo "selected"; ?>>PB</option>
-					<option value="PR"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PR") echo "selected"; ?>>PR</option>
-					<option value="PE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PE") echo "selected"; ?>>PE</option>
-					<option value="PI"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PI") echo "selected"; ?>>PI</option>
-					<option value="RJ"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RJ") echo "selected"; ?>>RJ</option>
-					<option value="RN"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RN") echo "selected"; ?>>RN</option>
-					<option value="RS"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RS") echo "selected"; ?>>RS</option>
-					<option value="RO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RO") echo "selected"; ?>>RO</option>
-					<option value="RR"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RR") echo "selected"; ?>>RR</option>
-					<option value="SC"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SC") echo "selected"; ?>>SC</option>
-					<option value="SP"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SP") echo "selected"; ?>>SP</option>
-					<option value="SE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SE") echo "selected"; ?>>SE</option>
-					<option value="TO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "TO") echo "selected"; ?>>TO</option>
+					<option value="AC"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AC") echo "selected"; ?>>Acre</option>
+					<option value="AL"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AL") echo "selected"; ?>>Alagoas</option>
+					<option value="AP"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AP") echo "selected"; ?>>Amapá</option>
+					<option value="AM"<?php if (isset($_POST['estado']) && $_POST['estado'] == "AM") echo "selected"; ?>>Amazonas</option>
+					<option value="BA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "BA") echo "selected"; ?>>Bahia</option>
+					<option value="CE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "CE") echo "selected"; ?>>Ceará</option>
+					<option value="DF"<?php if (isset($_POST['estado']) && $_POST['estado'] == "DF") echo "selected"; ?>>Distrito Federal</option>
+					<option value="ES"<?php if (isset($_POST['estado']) && $_POST['estado'] == "ES") echo "selected"; ?>>Espírito Santo</option>
+					<option value="GO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "GO") echo "selected"; ?>>Goiás</option>
+					<option value="MA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MA") echo "selected"; ?>>Maranhão</option>
+					<option value="MT"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MT") echo "selected"; ?>>Mato Grosso</option>
+					<option value="MS"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MS") echo "selected"; ?>>Mato Grosso do Sul</option>
+					<option value="MG"<?php if (isset($_POST['estado']) && $_POST['estado'] == "MG") echo "selected"; ?>>Minas Gerais</option>
+					<option value="PA"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PA") echo "selected"; ?>>Pará</option>
+					<option value="PB"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PB") echo "selected"; ?>>Paraíba</option>
+					<option value="PR"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PR") echo "selected"; ?>>Paraná</option>
+					<option value="PE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PE") echo "selected"; ?>>Pernambuco</option>
+					<option value="PI"<?php if (isset($_POST['estado']) && $_POST['estado'] == "PI") echo "selected"; ?>>Piauí</option>
+					<option value="RJ"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RJ") echo "selected"; ?>>Rio de Janeiro</option>
+					<option value="RN"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RN") echo "selected"; ?>>Rio Grande do Norte</option>
+					<option value="RS"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RS") echo "selected"; ?>>Rio Grande do Sul</option>
+					<option value="RO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RO") echo "selected"; ?>>Rondônia</option>
+					<option value="RR"<?php if (isset($_POST['estado']) && $_POST['estado'] == "RR") echo "selected"; ?>>Roraima</option>
+					<option value="SC"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SC") echo "selected"; ?>>Santa Catarina</option>
+					<option value="SP"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SP") echo "selected"; ?>>São Paulo</option>
+					<option value="SE"<?php if (isset($_POST['estado']) && $_POST['estado'] == "SE") echo "selected"; ?>>Sergipe</option>
+					<option value="TO"<?php if (isset($_POST['estado']) && $_POST['estado'] == "TO") echo "selected"; ?>>Tocantins</option>
 			</select>
 			</div>
-
-
-			<div class="form-group col-md-2">
-				<label for="telefone"> * Telefone </label>
-				<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Ex.: (00) 0000-0000" maxlength="14" value="<?php if (isset($_POST['telefone'])) echo $_POST['telefone']; ?>">
-			</div>
-
-			<div class="form-group col-md-2">
-				<label for="email"> * Celular </label>
-				<input type="text" class="form-control" id="celular" name="celular" placeholder="Ex.: (00) 00000-0000" maxlength="15" value="<?php if (isset($_POST['celular'])) echo $_POST['celular']; ?>">
-			</div>
-
+			
 			<div class="form-group col-md-4">
 				<label for="email"> * E-mail </label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu endereço de e-mail" maxlength="80" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
@@ -457,10 +423,11 @@
 							</select>
 				</div>
 			<?php } ?>
-
+			
+			
 			<div class="row">
 			</div>
-			
+
 			<hr />
 			
 			<div class="col-md-12">
