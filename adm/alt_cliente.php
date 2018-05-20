@@ -405,7 +405,7 @@
 
 			<div class="form-group col-md-2">
 				<label for="email"> * Celular </label>
-				<input type="text" class="form-control" id="email" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php echo $row[15]; ?>">
+				<input type="text" class="form-control" id="celular" name="celular" placeholder="Ex.: (00)00000-0000" maxlength="14" value="<?php echo $row[15]; ?>">
 			</div>
 
 			<div class="form-group col-md-4">
