@@ -4,15 +4,16 @@
       require_once('../includes/funcoes.php');
 
       list($check, $data) = check_login($dbc, $_POST['iptLogin'], $_POST['iptSenha']);
-	  
+	  //die("login: ".var_dump($check)." - Senha: ".var_dump($data));
       if ($check) {
           session_start();
           $_SESSION['id'] = $data['id'];
           $_SESSION['nome'] = $data['nome'];
 		  $_SESSION['tipo_usuario'] = $data['tipo_usuario'];
 		  $_SESSION['status'] = $data['status'];
+		  //die("id: ".$_SESSION['id']." - nome: ".$_SESSION['nome']." - tipo: ".$_SESSION['tipo_usuario']." - status: ".$_SESSION['status']);
 
-          $url = absolute_url('../minhas_reservas.php');
+          $url = absolute_url('../minhas_reservas.php?finaliza=S');
           header("Location: $url");
           exit();
       }
@@ -76,6 +77,7 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 		<a href="cad_cliente_reserva.php" class="btn btn-lg btn-primary btn-block">Me Cadastrar</a>
+		<a href="../cesta.php" class="btn btn-lg btn-primary btn-block">Cancelar</a>
         <input type="hidden" value="True" name="enviado" />
 		
 		<?php

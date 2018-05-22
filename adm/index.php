@@ -75,6 +75,7 @@
         <input type="password" name="iptSenha" id="inputPassword" class="form-control" placeholder="Senha" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+		<a href="../index.php" class="btn btn-lg btn-primary btn-block">Cancelar</a>
         <input type="hidden" value="True" name="enviado" />
 		
 		<?php

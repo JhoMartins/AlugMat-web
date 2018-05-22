@@ -12,12 +12,17 @@
 	//die($sql);
 	$res = mysqli_query($dbc, $sql);
 	$reg = mysqli_fetch_array($res);
-	$id_r = (isset($reg['ID'])) ? $reg['ID'] : 0;
+	$id_r = (isset($reg['id'])) ? $reg['id'] : 0;
+	$cd_cliente = (isset($_SESSION['id'])) ? $_SESSION['id'] : 0;
+	
+	$atualiza_pk = "alter table reservas auto_increment = $id_r";
+	mysqli_query($dbc,$atualiza_pk);
 	
 	//Insere um registro na tabela pedidos com o número do pedido
 	if (!isset($_SESSION['id_reserva']) && $inserir == 'S') {
 		//Incrementa 1 ao último pedido
 		$id_reserva = $id_r + 1;
+		//die("id_r: ".$id_r." - id_reserva: ".$id_reserva);
 		
 		//Prepara o número (id_pedido)
 		$_SESSION['id_reserva'] = $id_reserva;
@@ -25,6 +30,12 @@
 		$sqli = "insert into reservas (data_reserva) values (NOW())";
 		//die($sqli);
 		mysqli_query($dbc, $sqli);
+	}
+	
+	if (isset($_SESSION['id']) && isset($_SESSION['id_reserva'])) {
+		$sqlu = "update reservas set cd_cliente = ".$_SESSION['id']." where id = ".$_SESSION['id_reserva'];
+		//die($sqlu);
+		mysqli_query($dbc, $sqlu);
 	}
 	
 	//Excluir item do carrinho
@@ -70,11 +81,6 @@
 	$_SESSION['total_itens'] = $total_itens;
 ?>
 
-<!-- Menu Categorias -->
-<div class="row">
-	<?php include "includes/menu_categorias.php" ?>
-</div>
-
 <div class="row">
 	<?php if (!isset($_SESSION['id_reserva'])) { ?>
 		<div class="row">
@@ -82,8 +88,8 @@
 		</div>
 		<br /><br />
 		
-			<div class="col-md-11"></div>
-			<div class="col-md-1"><a href="index.php" class="btn btn-primary">Voltar à Loja</a></div>
+			<div class="col-md-10"></div>
+			<div class="col-md-2" align="center"><a href="index.php" class="btn btn-primary">Voltar para a Loja</a></div>
 		
 	<?php } else { ?>
 	<div class="row">
@@ -108,9 +114,9 @@
 		<table class="table table-striped table-responsive" >
 			<tr>
 				<th colspan="2">Descrição do Produto</th>
-				<th width="15%" align="center">Cód. Interno</th>
-				<th width="10%" align="center">Excluir Item</th>
-				<th width="10%" align="center">Valor da Diária</th>
+				<th width="15%" style="text-align: center;">Cód. Interno</th>
+				<th width="10%" style="text-align: center;">Excluir Item</th>
+				<th width="10%" style="text-align: center;">Valor da Diária</th>
 			</tr>
 			
 			<?php
@@ -150,7 +156,7 @@
 				<?php if (!isset($_SESSION['id'])) { ?>
 					<td><div align="right"><a href="adm/login.php" class="btn btn-success">Finalizar Reservas</a></div></td>
 				<?php } else { ?>
-					<td><div align="right"><a href="minhas_reservas.php" class="btn btn-success">Finalizar Reservas</a></div></td>
+					<td><div align="right"><a href="minhas_reservas.php?finaliza=S" class="btn btn-success">Finalizar Reservas</a></div></td>
 				<?php }
 				} //Encerra o ELSE que verifica se tem itens no carrinho ?>
 				

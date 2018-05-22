@@ -52,12 +52,44 @@
           <a class="navbar-brand" href="#">Alugmat - Aluguel de Materiais e Ferramentas</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-			<li><a href="../index.php">Home</a></li>
-            <?php if (isset($_SESSION['id'])) { ?>
-			<li><a href="logout.php">Sair</a></li>
-			<?php } ?>
-          </ul>
+          
+		  <?php if (!isset($_SESSION['id'])) { ?>
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="../index.php">Home</a></li>
+			  </ul>
+		  <?php } else {?>
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="../index.php">Home</a></li>
+				<li><a href="../minhas_reservas.php"> Minhas Reservas </a></li>
+				<li><a href="alt_cliente.php?id=<?= $_SESSION['id'] ?>"> Meu Cadastro </a></li>
+			    <li><a href="../cesta.php"> Meu Carrinho 
+				(<?php if (!isset($_SESSION['total_itens'])) 
+					{
+						echo "vazio";
+					}
+
+					if (isset($_SESSION['total_itens']))
+					{
+						if ($_SESSION['total_itens'] == 0)
+						{
+							echo "vazio";
+						}
+						else if ($_SESSION['total_itens'] == 1)
+						{
+							echo $_SESSION['total_itens'] . " produto";
+						}
+						else
+						{
+							echo $_SESSION['total_itens'] . " produtos";
+						}
+					}
+
+				?>)</a></li>
+				<li><a href="logout.php">Sair</a></li>
+			  </ul>
+		  <?php } ?>
+		  
+		  
         </div><!--/.nav-collapse -->
       </div>
     </nav>

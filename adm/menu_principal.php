@@ -8,6 +8,7 @@
   }
   $titulo = "AlugMat - Menu Principal";
   include_once('../includes/cabecalho.php');
+  //require_once('../includes/cabecalho_site.php');
 
   
 

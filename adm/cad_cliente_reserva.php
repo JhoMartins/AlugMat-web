@@ -142,6 +142,13 @@
 		}
 		else {
 			$email = mysqli_real_escape_string($dbc,trim($_POST['email']));
+			$email_dup = "select email from cliente where email = trim('$email')";
+			$res_email_dup = mysqli_query($dbc,$email_dup);
+			
+			if (mysqli_num_rows($res_email_dup) > 0) {
+				$erros[] = 'Este E-mail já está cadastrado em nosso site. Por favor, informe outro E-mail.';
+				unset($email);
+			}
 		}
 		
 		//SENHA
@@ -230,7 +237,7 @@
 							<p>Aguarde... Redirecionando!</p>";
 				
 				if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
-					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=../minhas_reservas.php'>";
+					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=login.php'>";
 				}
 				else if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 					echo "<meta HTTP-EQUIV='refresh' CONTENT='3; URL=menu_cliente.php'>";

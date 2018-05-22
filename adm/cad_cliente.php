@@ -142,6 +142,13 @@
 		}
 		else {
 			$email = mysqli_real_escape_string($dbc,trim($_POST['email']));
+			$email_dup = "select email from cliente where email = trim('$email')";
+			$res_email_dup = mysqli_query($dbc,$email_dup);
+			
+			if (mysqli_num_rows($res_email_dup) > 0) {
+				$erros[] = 'Este E-mail já está cadastrado em nosso site. Por favor, informe outro E-mail.';
+				unset($email);
+			}
 		}
 		
 		//SENHA

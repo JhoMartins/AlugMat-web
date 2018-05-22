@@ -3,6 +3,7 @@
 	if (!isset($_SESSION['id'])) {
 ?>
 <ul class="nav navbar-nav">
+	<li><a href="index.php?">Home</a></li>
 	<li><a href="adm/cad_cliente.php">Cadastre-se</a></li>
 	<li><a href="adm/index.php?">Login</a></li>
 	
@@ -12,10 +13,11 @@
 	} else {
 ?>
 <ul class="nav navbar-nav">
+	<li><a href="index.php"> Home </a></li>
 	<?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'ADM') {
 		echo '<li><a href="adm/menu_principal.php">Painel de Controle</a></li>'; 
 		} ?>
-	<li><a href="pedidos.php"> Minhas Reservas </a></li>
+	<li><a href="minhas_reservas.php"> Minhas Reservas </a></li>
 	<li><a href="adm/alt_cliente.php?id=<?= $_SESSION['id'] ?>"> Meu Cadastro </a></li>
 	<li><a href="cesta.php"> Meu Carrinho 
 	(<?php if (!isset($_SESSION['total_itens'])) 
