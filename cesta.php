@@ -134,10 +134,10 @@
 			?>
 			
 			<tr>
-				<td colspan="2"><img src='imagens/<?= $produto; ?>.jpg' width="53" height='32' align='absmiddle' />&nbsp;&nbsp;&nbsp;<?= $cd_produto; ?> - <?= $descricao; ?></td>
-				<td><?= $cd_interno; ?></td>
-				<td align="center"><a href="cesta.php?id=<?= $id_item; ?>&excluir=S"><img src="img/btn_removerItem.gif" alt="Remover" hspace="5" border="0" /></a></td>
-				<td align="right">R$ <?php echo number_format($valor_diaria,2,',','.'); ?></td>
+				<td colspan="2" style="vertical-align: middle;"><img src='imagens/<?= $produto; ?>.jpg' width="53" height='32' align='absmiddle' />&nbsp;&nbsp;&nbsp;<?= $cd_produto; ?> - <?= $descricao; ?></td>
+				<td align="center" style="vertical-align: middle;"><?= $cd_interno; ?></td>
+				<td align="center" style="vertical-align: middle;"><a href="cesta.php?id=<?= $id_item; ?>&excluir=S"><img src="img/btn_removerItem.gif" alt="Remover" hspace="5" border="0" /></a></td>
+				<td align="right" style="vertical-align: middle;">R$ <?php echo number_format($valor_diaria,2,',','.'); ?></td>
 				
 				<!-- Armazena id e código do item nos campos ocultos para serem capturados pelo POST do formulário -->
 				<input type="hidden" name="id<?= $produto; ?>" value= "<?= $id_item; ?>" />
@@ -147,8 +147,8 @@
 			
 			<tr>
 				<th colspan="3">* Após reservar seu produto, por favor, se dirija à nossa loja mais próxima para realizar o pagamento e retirar seu produto.</th>
-				<th align="right">Total:</th>
-				<th align="right">R$ <?php echo number_format($total,2,',','.'); ?></th>
+				<th align="right" style="text-align: right;">Total:</th>
+				<th align="right" style="text-align: right;">R$ <?php echo number_format($total,2,',','.'); ?></th>
 			</tr>
 
 			<tr>

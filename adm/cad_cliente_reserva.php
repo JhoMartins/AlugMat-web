@@ -469,7 +469,7 @@
 				echo '<a href="menu_cliente.php" class="btn btn-default">Cancelar</a>';
 			}
 			else if ((isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'USU') || !isset($_SESSION['tipo_usuario'])) {
-				echo '<a href="../index.php" class="btn btn-default">Cancelar</a>';
+				echo '<a href="login.php" class="btn btn-default">Cancelar</a>';
 			}
 			?>
 			<input type="hidden" name="enviou" value="True" />
