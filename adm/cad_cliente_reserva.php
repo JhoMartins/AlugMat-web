@@ -269,11 +269,6 @@
 	
 	if (isset($sucesso)) echo "<div class='alert alert-success'>$sucesso</div>"; 
 ?>
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-   <script src="../js/masks.js"></script>
-
-
 	<div id="main" class="container-fluid">
 		<h3 class="page-header">Cadastro de Usuário</h3>
         </script>
