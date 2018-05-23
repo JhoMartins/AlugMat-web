@@ -143,7 +143,7 @@ function ampliar_imagem(url,nome_janela,parametros)
 <div class="row">
   <div class="col-md-2">
   <!-- Exibe imagem da miniatura com opção de ampliação -->
-  <a href="#"><img src="img/<?php echo $produto; ?>G.jpg" width="200" height="121" border="0" onclick="ampliar_imagem('ampliar.php?codigo=<?= $produto; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" class="img-responsive" /></a><br />
+  <a href="#"><img src="img/<?php echo $produto; ?>.jpg" width="200" height="121" border="0" onclick="ampliar_imagem('ampliar.php?codigo=<?= $produto; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" class="img-responsive" /></a><br />
   <a href="#"><img src="img/btn_ampliar.gif" width="200" height="121" border="0" onclick="ampliar_imagem('ampliar.php?codigo=<?= $produto; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" class="img-responsive" /></a>
 
   <h4>Dados técnicos</h4>
