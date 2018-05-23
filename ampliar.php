@@ -8,6 +8,6 @@
 		<td><?= $nome; ?></td>
 	</tr>
 	<tr>
-		<td valign="top"><img src="imagens/<?= $codigo; ?>G.jpg" /></td>
+		<td valign="top"><img src="img/<?= $codigo; ?>G.jpg" /></td>
 	</tr>
 </table>
