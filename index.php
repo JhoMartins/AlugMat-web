@@ -85,6 +85,14 @@
 	}
 ?>
 
+<script type="text/JavaScript">
+//Função de abertura da janela de imagens ampliadas
+function ampliar_imagem(url,nome_janela,parametros)
+{
+	window.open(url,nome_janela,parametros);
+}
+</script>
+
 	<!--Menu Categorias --> 
 <div class="row">
 	<?php
@@ -149,11 +157,9 @@
 		<!--Monta a coluna da esquerda -->
 		<div class="col-md-6">
 			<div class="col-md-4">
-				<a href="#"><img src="img/<?php echo $id; ?>.jpg"
-					width="140" height="85" border="0" />
+				<a href="#"><img src="img/<?php echo $id; ?>.jpg" onclick="ampliar_imagem('ampliar.php?codigo=<?= $id; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" width="140" height="85" border="0" />
 				</a> <br />
-				<img src="img/btn_ampliar1.gif"
-					width="140" height="16" border="0" />
+				<a href="#"><img src="img/btn_ampliar1.gif" onclick="ampliar_imagem('ampliar.php?codigo=<?= $id; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" width="140" height="16" border="0" /></a>
 			</div>
 		<div class="col-md-8">
 			<strong><?php echo $descricao; ?></strong><br />
@@ -174,11 +180,9 @@
 			<!--Monta a coluna da Direita -->
 		<div class="col-md-6">
 			<div class="col-md-4">
-				<a href="#"><img src="img/<?php echo $id; ?>.jpg"
-					width="140" height="85" border="0" />
+				<a href="#"><img src="img/<?php echo $id; ?>.jpg" onclick="ampliar_imagem('ampliar.php?codigo=<?= $id; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" width="140" height="85" border="0" />
 				</a> <br />
-				<img src="img/btn_ampliar1.gif"
-					width="140" height="16" border="0" />
+				<a href="#"><img src="img/btn_ampliar1.gif" onclick="ampliar_imagem('ampliar.php?codigo=<?= $id; ?>&nome=<?= $descricao; ?>','','width=522,height=338,top=50,left=50')" width="140" height="16" border="0" /></a>
 			</div>
 		<div class="col-md-8">
 			<strong><?php echo $descricao; ?></strong><br />

@@ -157,15 +157,13 @@
 			$res = @mysqli_query($dbc, $qry);
 			$reg = @mysqli_fetch_array($res);
 			$confirma_email = $reg['email'];
+						
+			$email_dup = "select email from cliente where email = trim('$email') and id <> $id";
+			$res_email_dup = mysqli_query($dbc,$email_dup);
 			
-			if ($email != $confirma_email) {
-				$email_dup = "select email from cliente where email = trim('$email')";
-				$res_email_dup = mysqli_query($dbc,$email_dup);
-				
-				if (mysqli_num_rows($res_email_dup) > 0) {
-					$erros[] = 'Este E-mail já está cadastrado em nosso site. Por favor, informe outro E-mail.';
-					unset($email);
-				}
+			if (mysqli_num_rows($res_email_dup) > 0) {
+				$erros[] = 'Este E-mail já está cadastrado em nosso site. Por favor, informe outro E-mail.';
+				unset($email);
 			}
 		}
 		
