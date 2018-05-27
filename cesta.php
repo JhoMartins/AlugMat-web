@@ -97,7 +97,7 @@
 			<h3>Meu carrinho</h3>
 		</div>
 			<div class="col-md-6 h3">
-				<div align="right">Número da sua reserva:
+				<div align="right">Numero da sua reserva:
 					<span class="bg-success">
 						<?php echo $_SESSION['id_reserva']; ?>
 					</span>
