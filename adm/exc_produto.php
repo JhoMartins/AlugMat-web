@@ -106,9 +106,9 @@
 				<label for="sel1">* Fornecedor:</label>
 				<select class="form-control" id="sel1" name="fornecedor" disabled>
 					<option value="">Selecione</option>
-					<option value="fornecedor 1" <?php if ($row[9] == "fornecedor 1") echo "selected"; ?>>Fornecedor 1</option>
-					<option value="fornecedor 2" <?php if ($row[9] == "fornecedor 2") echo "selected"; ?>>Fornecedor 2</option>
-					<option value="fornecedor 3" <?php if ($row[9] == "fornecedor 3") echo "selected"; ?>>Fornecedor 3</option>
+					<option value="fornecedor 1" <?php if ($row[9] == "MACTEC") echo "selected"; ?>>MACTEC</option>
+					<option value="fornecedor 2" <?php if ($row[9] == "FERMAC") echo "selected"; ?>>FERMAC</option>
+					<option value="fornecedor 3" <?php if ($row[9] == "SIMANTECNO") echo "selected"; ?>>SIMANTECNO</option>
 				</select>
 			</div>
 			
