@@ -92,108 +92,108 @@ tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, compleme
 
 
 
--- FERRAMENTAS
+-- Ferramentas
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Chave Philips', '1601', '8.90', 'S', 'S', '1/4 X 6 Pol', 'Belzer', 'ferramentas', 'FERMAC', Now(), 'S');
+values ('Chave Philips', '1601', '8.90', 'S', 'S', '1/4 X 6 Pol', 'Belzer', 'Ferramentas', 'FERMAC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Alicate universal', '41001108', '16.90', 'S', 'N', 'Capacidade 8 pol', 'Gedore', 'ferramentas', 'MACTEC', Now(), 'S');
+values ('Alicate universal', '41001108', '16.90', 'S', 'N', 'Capacidade 8 pol', 'Gedore', 'Ferramentas', 'MACTEC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Chave biela', '303018', '13.99', 'S', 'S', 'Perfil L 18mm', 'Belzer', 'ferramentas', 'FERMAC', Now(), 'N');
+values ('Chave biela', '303018', '13.99', 'S', 'S', 'Perfil L 18mm', 'Belzer', 'Ferramentas', 'FERMAC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Grampo de Aperto Rápido', '8310', '19.99', 'S', 'S', 'Speed 6 pol', 'Gedore', 'ferramentas', 'SIMANTECNO', Now(), 'N');
+values ('Grampo de Aperto Rápido', '8310', '19.99', 'S', 'S', 'Speed 6 pol', 'Gedore', 'Ferramentas', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de Soquetes Sextavado', '8210', '52.50', 'S', 'S', '25 Peças CR-V de 1/4 Pol', 'Belzer', 'ferramentas', 'MACTEC', Now(), 'N');
+values ('Jogo de Soquetes Sextavado', '8210', '52.50', 'S', 'S', '25 Peças CR-V de 1/4 Pol', 'Belzer', 'Ferramentas', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Rebitador Manual', '3581244800', '19.90', 'S', 'S', 'Tipo alicate', 'Vonder', 'ferramentas', 'MACTEC', Now(), 'N');
+values ('Rebitador Manual', '3581244800', '19.90', 'S', 'S', 'Tipo alicate', 'Vonder', 'Ferramentas', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Alicate de Pressão', '41071110', '35.50', 'S', 'S', 'Mordente Curvo 10 Pol', 'Gedore', 'ferramentas', 'FERMAC', Now(), 'S');
+values ('Alicate de Pressão', '41071110', '35.50', 'S', 'S', 'Mordente Curvo 10 Pol', 'Gedore', 'Ferramentas', 'FERMAC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de Chave Allen', '4288M', '29.90', 'S', 'S', '8 Peça - 2 a 10 mm', 'Gedore', 'ferramentas', 'SIMANTECNO', Now(), 'N');
+values ('Jogo de Chave Allen', '4288M', '29.90', 'S', 'S', '8 Peça - 2 a 10 mm', 'Gedore', 'Ferramentas', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de Chave Estrela', '661040', '173.90', 'S', 'S', '12 Peças - 6 a 32 mm', 'Vonder', 'ferramentas', 'SIMANTECNO', Now(), 'N');
+values ('Jogo de Chave Estrela', '661040', '173.90', 'S', 'S', '12 Peças - 6 a 32 mm', 'Vonder', 'Ferramentas', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Torquimetro de Estalo', '590010', '1254.90', 'S', 'S', '10 a 100 NM - Encaixe de 1/2 Pol', 'Belzer', 'ferramentas', 'MACTEC', Now(), 'N');
+values ('Torquimetro de Estalo', '590010', '1254.90', 'S', 'S', '10 a 100 NM - Encaixe de 1/2 Pol', 'Belzer', 'Ferramentas', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de Chave de Fenda', '43408176', '9.90', 'S', 'S', '3/16pol a 1/8pol - 5 Peças', 'Vonder', 'ferramentas', 'MACTEC', Now(), 'S');
+values ('Jogo de Chave de Fenda', '43408176', '9.90', 'S', 'S', '3/16pol a 1/8pol - 5 Peças', 'Vonder', 'Ferramentas', 'MACTEC', Now(), 'S');
 
 
 
 -- MÁQUINAS
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Tupia Manual', '3709', '308.90', 'S', 'S', 'Para Laminação 550W 220V', 'Makita', 'maquinas', 'SIMANTECNO', Now(), 'S');
+values ('Tupia Manual', '3709', '308.90', 'S', 'S', 'Para Laminação 550W 220V', 'Vonder', 'Máquinas', 'SIMANTECNO', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Moto esmeril', 'F321', '439.90', 'S', 'S', '6 pol 250w', 'makita', 'maquinas', 'MACTEC', Now(), 'N');
+values ('Moto esmeril', 'F321', '439.90', 'S', 'S', '6 pol 250w', 'Vonder', 'Máquinas', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Martelete Rotativo', 'HR2460', '797,90', 'S', 'S', 'Rompedor 780W 220V', 'Makita', 'maquinas', 'SIMANTECNO', Now(), 'N');
+values ('Martelete Rotativo', 'HR2460', '797,90', 'S', 'S', 'Rompedor 780W 220V', 'Vonder', 'Máquinas', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Parafusadeira de impacto', 'GSB18VLI', '919.90', 'S', 'S', 'Bateria 18v - 1/2 pol', 'Bosch', 'maquinas', 'FERMAC', Now(), 'N');
+values ('Parafusadeira de impacto', 'GSB18VLI', '919.90', 'S', 'S', 'Bateria 18v - 1/2 pol', 'Gedore', 'Máquinas', 'FERMAC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Esmerilhadeira Angular', 'GWS22180', '549.90', 'S', 'S', 'Capacidade 7 pol 2200W', 'Bosch', 'maquinas', 'MACTEC', Now(), 'S');
+values ('Esmerilhadeira Angular', 'GWS22180', '549.90', 'S', 'S', 'Capacidade 7 pol 2200W', 'Gedore', 'Máquinas', 'MACTEC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Lixadeira orbital', '4556', '279.90', 'S', 'S', 'Potencia 200W - 110V', 'Makita', 'maquinas', 'SIMANTECNO', Now(), 'N');
+values ('Lixadeira orbital', '4556', '279.90', 'S', 'S', 'Potencia 200W - 110V', 'Vonder', 'Máquinas', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Furadeira Impacto reversivel', '06012281', '348.90', 'S', 'S', 'Capacidade 1/2pol - 750W', 'Bosch', 'maquinas', 'FERMAC', Now(), 'N');
+values ('Furadeira Impacto reversivel', '06012281', '348.90', 'S', 'S', 'Capacidade 1/2pol - 750W', 'Gedore', 'Máquinas', 'FERMAC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Serra circular', 'DW1100', '169.90', 'S', 'S', 'Capacidade 7.1/4 Pol 1100W', 'DeWalt', 'maquinas', 'FERMAC', Now(), 'S');
+values ('Serra circular', 'DW1100', '169.90', 'S', 'S', 'Capacidade 7.1/4 Pol 1100W', 'Belzer', 'Máquinas', 'FERMAC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Serra Tico-tico', 'DW300', '409.00', 'S', 'S', 'Potencia 500W - 110v', 'Dewalt', 'maquinas', 'FERMAC', Now(), 'S');
+values ('Serra Tico-tico', 'DW300', '409.00', 'S', 'S', 'Potencia 500W - 110v', 'Belzer', 'Máquinas', 'FERMAC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Maquina de solda', 'DW4220', '299.00', 'S', 'S', 'Transformadora 250A bivolt', 'Dewalt', 'maquinas', 'FERMAC', Now(), 'N');
+values ('Maquina de solda', 'DW4220', '299.00', 'S', 'S', 'Transformadora 250A bivolt', 'Belzer', 'Máquinas', 'FERMAC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Lixadeira vertical', '125440', '139.90', 'S', 'S', 'Capacidade 5pol 440W', 'Bosch', 'maquinas', 'MACTEC', Now(), 'N');
+values ('Lixadeira vertical', '125440', '139.90', 'S', 'S', 'Capacidade 5pol 440W', 'Gedore', 'Máquinas', 'MACTEC', Now(), 'N');
 
 
 
 -- PEÇAS
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de broca', '260701958', '10,90', 'S', 'S', '7 Peças 3mm a 10mm', 'Bosch', 'pecas', 'FERMAC', Now(), 'S');
+values ('Jogo de broca', '260701958', '10,90', 'S', 'S', '7 Peças 3mm a 10mm', 'Gedore', 'Peças', 'FERMAC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo de fresa', 'T006', '85.99', 'S', 'S', '6 Peças diametro eixo 1/4pol', 'Bosch', 'pecas', 'MACTEC', Now(), 'S');
+values ('Jogo de fresa', 'T006', '85.99', 'S', 'S', '6 Peças diametro eixo 1/4pol', 'Gedore', 'Peças', 'MACTEC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Chave de mandril', 'VDC2', '4,99', 'S', 'S', 'Capacidade 10mm a 13mm', 'Vonder', 'pecas', 'FERMAC', Now(), 'N');
+values ('Chave de mandril', 'VDC2', '4,99', 'S', 'S', 'Capacidade 10mm a 13mm', 'Vonder', 'Peças', 'FERMAC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Faca plaina', '7933468', '209,90', 'S', 'S', 'Compativel com makita 2012', 'Makita', 'pecas', 'MACTEC', Now(), 'N');
+values ('Faca plaina', '7933468', '209,90', 'S', 'S', 'Compativel com Vonder 2012', 'Vonder', 'Peças', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Disco de corte', '46TBF2T', '3,99', 'S', 'S', 'Dimensão 4.1/2 x 1pol', 'Bosch', 'pecas', 'MACTEC', Now(), 'N');
+values ('Disco de corte', '46TBF2T', '3,99', 'S', 'S', 'Dimensão 4.1/2 x 1pol', 'Gedore', 'Peças', 'MACTEC', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Broca chata', 'BCM601', '8,90', 'S', 'S', 'Dimensão 1pol', 'Vonder', 'pecas', 'SIMANTECNO', Now(), 'N');
+values ('Broca chata', 'BCM601', '8,90', 'S', 'S', 'Dimensão 1pol', 'Vonder', 'Peças', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Jogo Serra copo', '97002', '69,99', 'S', 'S', '15 pecas 19mm a 276mm', 'Vonder', 'pecas', 'SIMANTECNO', Now(), 'N');
+values ('Jogo Serra copo', '97002', '69,99', 'S', 'S', '15 Peças 19mm a 276mm', 'Vonder', 'Peças', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('broca escalonada', '17002', '69,90', 'S', 'S', 'Aço rapido HSS 4mm a 12mm', 'Bosch', 'pecas', 'SIMANTECNO', Now(), 'N');
+values ('broca escalonada', '17002', '69,90', 'S', 'S', 'Aço rapido HSS 4mm a 12mm', 'Gedore', 'Peças', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Fresa reta', '531410', '11,90', 'S', 'S', '6mm para acabamento', 'Vonder', 'pecas', 'MACTEC', Now(), 'S');
+values ('Fresa reta', '531410', '11,90', 'S', 'S', '6mm para acabamento', 'Vonder', 'Peças', 'MACTEC', Now(), 'S');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Disco de desbaste', '20945', '58,90', 'S', 'S', 'Diametro 100mm 20 dentes', 'Bosch', 'pecas', 'SIMANTECNO', Now(), 'N');
+values ('Disco de desbaste', '20945', '58,90', 'S', 'S', 'Diametro 100mm 20 dentes', 'Gedore', 'Peças', 'SIMANTECNO', Now(), 'N');
 
 insert into produto (descricao, cd_interno, valor_diaria, status, disponivel, caracteristicas, marca, categoria, fornecedor, data_inc, destaque)
-values ('Broca dobradica', '26085986', '49,90', 'S', 'S', 'videa 15mm', 'Makita', 'pecas', 'FERMAC', Now(), 'S');
+values ('Broca dobradica', '26085986', '49,90', 'S', 'S', 'videa 15mm', 'Vonder', 'Peças', 'FERMAC', Now(), 'S');

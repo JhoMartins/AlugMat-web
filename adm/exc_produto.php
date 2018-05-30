@@ -84,9 +84,9 @@
 			<label for="sel1">* Marca:</label>
 			<select class="form-control" id="sel1" name="marca" disabled>
 				<option value="">Selecione</option>
-				<option value="Bosh" <?php if ($row[7] == "Gedore") echo "selected"; ?>>Gedore</option>
-				<option value="3M" <?php if ($row[7] == "Belzer") echo "selected"; ?>>Belzer</option>
-				<option value="Bracol" <?php if ($row[7] == "Vonder") echo "selected"; ?>>Vonder</option>
+				<option value="Gedore" <?php if ($row[7] == "Gedore") echo "selected"; ?>>Gedore</option>
+				<option value="Belzer" <?php if ($row[7] == "Belzer") echo "selected"; ?>>Belzer</option>
+				<option value="Vonder" <?php if ($row[7] == "Vonder") echo "selected"; ?>>Vonder</option>
 			</select>
 			</div>
 
@@ -95,9 +95,9 @@
 				<label for="sel1">* Categoria:</label>
 				<select class="form-control" id="sel1" name="categoria" disabled>
 					<option value="">Selecione</option>
-					<option value="pecas" <?php if ($row[8] == "pecas") echo "selected"; ?>>Peças</option>
-					<option value="maquinas" <?php if ($row[8] == "maquinas") echo "selected"; ?>>Máquinas</option>
-					<option value="ferramentas" <?php if ($row[8] == "ferramentas") echo "selected"; ?>>Ferramentas</option>
+					<option value="Peças" <?php if ($row[8] == "Peças") echo "selected"; ?>>Peças</option>
+					<option value="Máquinas" <?php if ($row[8] == "Máquinas") echo "selected"; ?>>Máquinas</option>
+					<option value="Ferramentas" <?php if ($row[8] == "Ferramentas") echo "selected"; ?>>Ferramentas</option>
 				</select>
 			</div>
 
@@ -106,9 +106,9 @@
 				<label for="sel1">* Fornecedor:</label>
 				<select class="form-control" id="sel1" name="fornecedor" disabled>
 					<option value="">Selecione</option>
-					<option value="fornecedor 1" <?php if ($row[9] == "MACTEC") echo "selected"; ?>>MACTEC</option>
-					<option value="fornecedor 2" <?php if ($row[9] == "FERMAC") echo "selected"; ?>>FERMAC</option>
-					<option value="fornecedor 3" <?php if ($row[9] == "SIMANTECNO") echo "selected"; ?>>SIMANTECNO</option>
+					<option value="MACTEC" <?php if ($row[9] == "MACTEC") echo "selected"; ?>>MACTEC</option>
+					<option value="FERMAC" <?php if ($row[9] == "FERMAC") echo "selected"; ?>>FERMAC</option>
+					<option value="SIMANTECNO" <?php if ($row[9] == "SIMANTECNO") echo "selected"; ?>>SIMANTECNO</option>
 				</select>
 			</div>
 			

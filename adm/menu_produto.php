@@ -100,10 +100,10 @@
 	  
       while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		  
-		  if ($row['categoria'] == 'pecas') {
+		  if ($row['categoria'] == 'Peças') {
 		  $cat = 'Peças';
 		  }
-		  else if ($row['categoria'] == 'maquinas') {
+		  else if ($row['categoria'] == 'Máquinas') {
 			  $cat = 'Máquinas';
 		  }
 		  else {
