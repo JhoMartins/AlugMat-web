@@ -6,6 +6,10 @@
 
   require_once('../includes/conexao.php');
 
+  require_once('../includes/funcoes.php');
+
+  authorize_user();
+
   $exiba = 5;
 
   $where = mysqli_real_escape_string($dbc, trim(isset($_GET['q'])) ? $_GET['q'] : '');

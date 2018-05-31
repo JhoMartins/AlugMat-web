@@ -1,6 +1,10 @@
 <?php
 	$titulo = "Cadastro de Produto";
 	include_once('../includes/cabecalho.php');
+
+	require_once('../includes/funcoes.php');
+
+    authorize_user();
 	
 	if (isset($_POST['enviou'])) {
 		require_once('../includes/conexao.php');

@@ -1,6 +1,11 @@
 <?php
 	$titulo = "Alteração de Usuário";
 	include_once('../includes/cabecalho.php');
+
+	require_once('../includes/funcoes.php');
+
+	authorize_user();
+	
 	if ((isset($_GET['id'])) && (is_numeric($_GET['id']))) {
 		$id = $_GET['id'];
 	}
