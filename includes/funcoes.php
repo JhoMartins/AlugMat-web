@@ -63,5 +63,12 @@
 		}
 	  }
 	return array(false, $erros);
-  }
+	}
+	
+	function authorize_user() {
+		if(!isset($_SESSION['id'])) {
+			$url = absolute_url('../index.php');
+			header("Location: $url");
+		}
+	}
 ?>
