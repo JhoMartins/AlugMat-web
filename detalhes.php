@@ -171,7 +171,7 @@ function ampliar_imagem(url,nome_janela,parametros)
 	</div>
 </div>
 </div>
-<div class="row">
+	
 	<div class="col-md-2">
 	</div>
 	<form class="form-group col-md-10" method="post" action="">
@@ -198,7 +198,7 @@ function ampliar_imagem(url,nome_janela,parametros)
 		<input type="hidden" name="enviou" value="True" />
 		<input type="hidden" name="produto" value="<?= $id; ?>" />
 	</form>	
-</div>
+
 <?php
 	}
 	

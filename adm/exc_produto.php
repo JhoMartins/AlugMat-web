@@ -26,7 +26,7 @@
 		
 		if ($res) {
 			$sucesso = "<h1><strong>Sucesso!</strong></h1>
-						<p>Seu registro foi incluido com sucesso!</p>
+						<p>Seu registro foi excluido com sucesso!</p>
 						<p>Aguarde... Redirecionando!</p>";
 			
 			echo "<div class='alert alert-success'>$sucesso</div>";
@@ -35,9 +35,9 @@
 		}
 		else {
 			$erro = "<h1><strong>Erro no Sistema</strong></h1>
-					 <p>Você não pode ser registrado devido a um erro do sistema. Pedimos desculpas por qualquer inconveniente.</p>";
+					 <p>O registro não pode ser excluido devido a um erro do sistema. Pedimos desculpas por qualquer inconveniente.</p>";
 			
-			$erro .= '<p>' . mysqli_error($dbc) . '<br /> Query: ' . $q . '</p>';
+			$erro .= '<p>' . mysqli_error($dbc) . '<br /> Query: ' . @$q . '</p>';
 			
 			echo "<div class='alert alert-danger'>$erro</div>";
 		}
