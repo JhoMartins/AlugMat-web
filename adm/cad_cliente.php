@@ -355,7 +355,7 @@
 				<input type="text" class="form-control" id="ie" name="ie" placeholder="000.000.000.000" maxlength="15" value="<?php if (isset($_POST['ie'])) echo $_POST['ie']; ?>" disabled>
 			</div>
 
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-2">
 				<label for="longadouro"> * Tipo de Logradouro </label>
 				<input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="" maxlength="20" value="<?php if (isset($_POST['logradouro'])) echo $_POST['logradouro']; ?>">
 			</div>
@@ -365,12 +365,12 @@
 				<input type="text" class="form-control" id="nome_logradouro" name="nome_logradouro" placeholder="" maxlength="50" value="<?php if (isset($_POST['nome_logradouro'])) echo $_POST['nome_logradouro']; ?>">
 			</div>
 
-			<div class="form-group col-md-2">
+			<div class="form-group col-md-1">
 				<label for="numero"> * Num. </label>
 				<input type="text" class="form-control" id="num" name="num" placeholder="" maxlength="5" value="<?php if (isset($_POST['num'])) echo $_POST['num']; ?>">
 			</div>
 
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 				<label for="complemento"> Complemento </label>
 				<input type="text" class="form-control" id="complemento" name="complemento" placeholder="" maxlength="20" value="<?php if (isset($_POST['complemento'])) echo $_POST['complemento']; ?>">
 			</div>
@@ -430,7 +430,7 @@
 				<input type="text" class="form-control" id="celular" name="celular" placeholder="Ex.: (00) 00000-0000" maxlength="15" value="<?php if (isset($_POST['celular'])) echo $_POST['celular']; ?>">
 			</div>
 
-			<div class="form-group col-md-5">
+			<div class="form-group col-md-4">
 				<label for="email"> * E-mail </label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu endereço de e-mail" maxlength="80" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
 			</div>
