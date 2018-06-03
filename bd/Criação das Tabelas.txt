@@ -87,48 +87,48 @@ tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, compleme
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Ana', '123.432.333-01', '11.222.333-1', NULL, NULL, 'Rua', 'João vitório', 2, 'Apartamento', 'Jardins', 'Piracicaba', 'SP', '(19)3456-7899', '(19)9992-2222', 'ana@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:13:06', 'USU', 'S');
+'F', 'Ana', '123.432.333-01', '11.222.333-1', NULL, NULL, 'Rua', 'João vitório', 2, 'Apartamento', 'Jardins', 'Piracicaba', 'SP', '(19)3456-7899', '(19)99992-2222', 'ana@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:13:06', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Deivid', '424.107.222-02', '12.332.332-6', NULL, NULL, 'Rua', 'Jose de luis', 108, 'Casa', 'Nova América', 'Piracicaba', 'SP', '(19)3455-7595', '(19)9932-4212', 'deivid@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:17:08', 'USU', 'S');
+'F', 'Deivid', '424.107.222-02', '12.332.332-6', NULL, NULL, 'Rua', 'Jose de luis', 108, 'Casa', 'Nova América', 'Piracicaba', 'SP', '(19)3455-7595', '(19)99932-4212', 'deivid@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:17:08', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'João', '334.537.272-07', '15.832.992-3', NULL, NULL, 'Rua', 'Luis rasera', 222, 'Casa', 'Jardim Elite', 'Piracicaba', 'SP', '(19)3555-7885', '(19)9772-7272', 'joao@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:19:09', 'USU', 'S');
+'F', 'João', '334.537.272-07', '15.832.992-3', NULL, NULL, 'Rua', 'Luis rasera', 222, 'Casa', 'Jardim Elite', 'Piracicaba', 'SP', '(19)3555-7885', '(19)99772-7272', 'joao@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:19:09', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Bia', '774.737.272-07', '19.752.662-9', NULL, NULL, 'Rua', 'Pinheiros', 442, 'Casa', 'Terra Nova', 'Piracicaba', 'SP', '(19)3444-8985', '(19)9552-6262', 'bia@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:22:05', 'USU', 'S');
+'F', 'Bia', '774.737.272-07', '19.752.662-9', NULL, NULL, 'Rua', 'Pinheiros', 442, 'Casa', 'Terra Nova', 'Piracicaba', 'SP', '(19)3444-8985', '(19)99552-6262', 'bia@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:22:05', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Bia', '774.737.272-07', '19.752.662-9', NULL, NULL, 'Rua', 'Pinheiros', 442, 'Casa', 'Terra Nova', 'Piracicaba', 'SP', '(19)3444-8985', '(19)9552-6262', 'bia@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:22:05', 'USU', 'S');
+'F', 'Bia', '774.737.272-07', '19.752.662-9', NULL, NULL, 'Rua', 'Pinheiros', 442, 'Casa', 'Terra Nova', 'Piracicaba', 'SP', '(19)3444-8985', '(19)99552-6262', 'bia@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:22:05', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Carlos', '444.777.979-55', '59.333.668-3', NULL, NULL, 'Rua', 'Dom Pedro I', 55, 'Casa', 'Centro', 'Piracicaba', 'SP', '(19)3594-8905', '(19)9772-6777', 'carlos@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:24:08', 'USU', 'S');
+'F', 'Carlos', '444.777.979-55', '59.333.668-3', NULL, NULL, 'Rua', 'Dom Pedro I', 55, 'Casa', 'Centro', 'Piracicaba', 'SP', '(19)3594-8905', '(19)99772-6777', 'carlos@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:24:08', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Pedro', '774.687.779-45', '39.223.138-3', NULL, NULL, 'Rua', 'Dom Pedro II', 1000, 'Casa', 'Paulicéia', 'Piracicaba', 'SP', '(19)3333-4675', '(19)9882-6737', 'pedro@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:26:08', 'USU', 'S');
+'F', 'Pedro', '774.687.779-45', '39.223.138-3', NULL, NULL, 'Rua', 'Dom Pedro II', 1000, 'Casa', 'Paulicéia', 'Piracicaba', 'SP', '(19)3333-4675', '(19)99882-6737', 'pedro@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:26:08', 'USU', 'S');
 
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Clara', '334.337.229-22', '35.773.668-6', NULL, NULL, 'Avenida', 'Dois Corregos', 130, 'Casa', 'Pompéia', 'Piracicaba', 'SP', '(19)3999-6335', '(19)9342-6447', 'clara@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:28:07', 'USU', 'S');
+'F', 'Clara', '334.337.229-22', '35.773.668-6', NULL, NULL, 'Avenida', 'Dois Corregos', 130, 'Casa', 'Pompéia', 'Piracicaba', 'SP', '(19)3999-6335', '(19)99342-6447', 'clara@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:28:07', 'USU', 'S');
 
 insert into cliente (
 tipo_pessoa, nome, cpf, rg, cnpj, ie, logradouro, nome_logradouro, num, complemento, bairro, cidade, estado, telefone, celular,email,senha,data_inc, tipo_usuario, status
 ) values (
-'F', 'Paula', '111.225.239-33', '95.993.668-9', NULL, NULL, 'Avenida', 'Rio das Pedras', 250, 'Casa', 'Piracicamirim', 'Piracicaba', 'SP', '(19)3797-7735', '(19)9772-6557', 'paula@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:28:07', 'USU', 'S');
+'F', 'Paula', '111.225.239-33', '95.993.668-9', NULL, NULL, 'Avenida', 'Rio das Pedras', 250, 'Casa', 'Piracicamirim', 'Piracicaba', 'SP', '(19)3797-7735', '(19)99772-6557', 'paula@email.com', 'ea0989212bea5fc14855bf0c0f9e77034f3c00b1', '2018-05-31 22:28:07', 'USU', 'S');
 
 
 
